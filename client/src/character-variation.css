@@ -1,0 +1,507 @@
+/* character-variation.css — page layout only (avatar look lives in character/avatar-*.css) */
+.photo-upload-box small{margin-top:5px;color:color-mix(in srgb,var(--teal) 72%,white);font-size:9px}.photo-analyzing{width:min(100%,430px);min-height:190px;margin:28px auto 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(120,216,194,.25);border-radius:18px;background:rgba(120,216,194,.035)}.photo-analyzing>span{width:40px;height:40px;border:2px solid rgba(120,216,194,.18);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite}.photo-analyzing strong{font-size:13px}.photo-analyzing small{color:#747c8c;font-size:9px}.photo-insights{width:min(100%,500px);margin:13px auto 0;padding:14px;text-align:left;border:1px solid rgba(120,216,194,.19);border-radius:16px;background:rgba(10,18,29,.66)}.photo-insight-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.07)}.photo-insight-head small,.photo-insight-head strong{display:block}.photo-insight-head small{color:var(--teal);font:700 8px/1 monospace;letter-spacing:.13em}.photo-insight-head strong{margin-top:5px;font-size:11px}.photo-palette{display:flex}.photo-palette i{width:23px;height:23px;margin-left:-5px;border:2px solid #111827;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.25)}.photo-insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px}.photo-insight-grid>span{min-height:42px;padding:8px 9px;color:#a7adba;font-size:9px;border:1px solid rgba(255,255,255,.06);border-radius:10px;background:rgba(255,255,255,.02)}.photo-insight-grid b{display:block;margin-bottom:4px;color:#666f80;font-size:7px;font-weight:500}.photo-insight-grid i{display:inline-block;width:9px;height:9px;margin-right:5px;border-radius:50%;vertical-align:-1px}.photo-insights>button{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px;padding:8px;color:var(--gold);font-size:9px;border:1px solid rgba(255,209,102,.16);border-radius:9px;background:rgba(255,209,102,.035)}
+
+@media(max-width:800px){.layered-avatar *{transition:none!important}}
+.voice-signal{display:flex;flex:0 0 auto;gap:5px}.voice-signal span{padding:4px 6px;color:color-mix(in srgb,var(--teal) 82%,white);font:7px/1.2 monospace;border:1px solid color-mix(in srgb,var(--teal) 22%,transparent);border-radius:999px;background:color-mix(in srgb,var(--teal) 5%,transparent)}
+@media(max-width:800px){.voice-preview{flex-wrap:wrap}.voice-preview audio{flex:1 1 100%}.voice-signal{flex:1}}
+@media(max-width:800px){.photo-insight-grid{grid-template-columns:1fr}.photo-insight-head{align-items:flex-start}.photo-preview>div{min-width:0}.photo-preview span{white-space:normal}}
+
+/* =========================================================
+   Character stage & identity polish · 星空夜航 · 奢感音乐宇宙
+   Additive layer over styles.css / visual-refresh.css.
+   Geometry of generator silhouettes stays intact.
+   ========================================================= */
+
+/* ——— 1. Character stage: deep-space vitrine ——— */
+.character-stage{
+  border-radius:30px;
+  border-color:rgba(246,238,220,.12);
+  background:
+    radial-gradient(circle at 50% 43%,color-mix(in srgb,var(--character-color) 34%,transparent),transparent 48%),
+    radial-gradient(ellipse at 18% 100%,rgba(123,167,232,.1),transparent 42%),
+    radial-gradient(ellipse at 86% 8%,rgba(255,209,102,.07),transparent 32%),
+    linear-gradient(165deg,#1a2744 0%,var(--night-2,#0d1220) 54%,var(--night,#070a13) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(246,238,220,.08),
+    inset 0 -48px 90px rgba(7,10,19,.48),
+    0 30px 90px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,209,102,.05);
+}
+/* cinematic vignette + faint gold rim (above avatar, below HUD labels) */
+.character-stage::before{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(180deg,rgba(255,209,102,.12),transparent 18%),
+    radial-gradient(ellipse at 50% 48%,transparent 38%,rgba(7,10,19,.52) 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,209,102,.08);
+}
+/* soft light pool on the stage floor */
+.character-stage::after{
+  content:"";position:absolute;left:50%;bottom:52px;z-index:1;width:230px;height:38px;
+  transform:translateX(-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,color-mix(in srgb,var(--character-color) 30%,transparent),transparent 70%);
+  filter:blur(12px);opacity:.72;
+}
+.stage-grid{
+  z-index:0;opacity:.28;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    radial-gradient(circle at 50% 78%,rgba(120,216,194,.07),transparent 55%);
+  background-size:34px 34px,34px 34px,100% 100%;
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 28%,#000 64%,transparent 100%);
+}
+.stage-vinyl{
+  inset:0;margin:auto;width:290px;height:290px;z-index:0;opacity:.5;
+  border-color:rgba(246,238,220,.07);
+  background:
+    repeating-radial-gradient(circle,rgba(255,255,255,.035) 0 1px,transparent 2px 8px),
+    radial-gradient(circle,rgba(255,209,102,.09) 0 11%,transparent 12%),
+    radial-gradient(circle,rgba(7,10,19,.45),rgba(16,21,34,.32));
+  box-shadow:0 20px 50px rgba(0,0,0,.25),inset 0 0 40px rgba(7,10,19,.4);
+  animation:spin 42s linear infinite;
+}
+.stage-glow{
+  left:50%;top:46%;width:290px;height:290px;z-index:0;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,color-mix(in srgb,var(--character-color) 70%,transparent) 0%,color-mix(in srgb,var(--character-color) 28%,transparent) 42%,transparent 70%);
+  opacity:.13;filter:blur(44px);
+}
+.stage-number,.stage-location{
+  z-index:5;font-size:8px;letter-spacing:.2em;
+  color:rgba(246,238,220,.42);text-transform:uppercase;
+}
+.stage-number{color:color-mix(in srgb,var(--gold) 55%,transparent);}
+.stage-location{color:rgba(246,238,220,.48);}
+.stage-avatar{z-index:2;}
+.floating-note{
+  z-index:5;right:18%;top:22%;
+  color:color-mix(in srgb,var(--gold) 85%,white);
+  font-size:22px;opacity:.85;
+  text-shadow:0 0 18px rgba(255,209,102,.35);
+  animation:float 4.6s ease-in-out infinite;
+}
+.stage-song{
+  z-index:5;bottom:22px;
+  padding:9px 14px;font-size:12px;
+  border-color:rgba(255,209,102,.18);
+  background:rgba(7,10,19,.72);
+  color:color-mix(in srgb,var(--paper) 78%,transparent);
+  box-shadow:0 12px 28px rgba(7,10,19,.28),inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter:blur(10px);
+}
+.stage-song svg{color:var(--gold);opacity:.9;}
+
+/* ——— 2. Layered avatar: stage presence, grounded body, richer aura ——— */
+.layered-avatar{
+  filter:drop-shadow(0 18px 22px rgba(7,10,19,.38)) drop-shadow(0 2px 0 rgba(255,255,255,.03));
+}
+/* soft contact shadow — keeps the figure off “sticker” mode */
+.layered-avatar::after{
+  content:"";position:absolute;left:50%;bottom:6px;z-index:0;width:132px;height:20px;
+  transform:translateX(-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(4,7,14,.45) 0%,rgba(4,7,14,.18) 42%,transparent 72%);
+  filter:blur(3px);
+}
+.avatar-aura{
+  width:210px;height:210px;opacity:.42;
+  border-color:color-mix(in srgb,var(--accent) 38%,transparent);
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 18%,transparent) 0%,color-mix(in srgb,var(--accent) 6%,transparent) 42%,transparent 68%);
+  animation:avatarAura 8s ease-in-out infinite;
+}
+.avatar-aura::before{
+  content:"";position:absolute;inset:-16px;
+  border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);
+  border-radius:inherit;
+  box-shadow:
+    0 0 0 10px color-mix(in srgb,var(--accent) 4%,transparent),
+    0 0 28px color-mix(in srgb,var(--accent) 12%,transparent);
+}
+.avatar-aura::after{
+  content:"";position:absolute;inset:22px;
+  border:1px dashed color-mix(in srgb,var(--accent) 28%,transparent);
+  border-radius:inherit;
+  opacity:.7;
+}
+.avatar-aura i{
+  width:6px;height:6px;opacity:.8;
+  background:radial-gradient(circle at 35% 30%,#fff,var(--accent) 55%);
+  box-shadow:
+    0 0 8px color-mix(in srgb,var(--accent) 80%,transparent),
+    0 0 18px color-mix(in srgb,var(--accent) 35%,transparent);
+}
+.avatar-aura i:nth-child(1){animation:auraDot 5.5s ease-in-out infinite}
+.avatar-aura i:nth-child(2){animation:auraDot 6.5s ease-in-out .6s infinite}
+.avatar-aura i:nth-child(3){animation:auraDot 7.2s ease-in-out 1.2s infinite}
+
+/* six aura personalities: stage light, not clipart */
+.aura-orbit .avatar-aura{
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotate(-18deg) scaleX(1.08) scaleY(.92);
+  animation:auraOrbitTilt 10s ease-in-out infinite;
+}
+.aura-orbit .avatar-aura::before{
+  border-radius:50%;
+  transform:scaleX(.72) scaleY(1.15) rotate(28deg);
+}
+.aura-orbit .avatar-aura::after{
+  border-radius:50%;
+  border-style:solid;
+  transform:scaleX(1.12) scaleY(.7) rotate(-34deg);
+}
+.aura-moon .avatar-aura{
+  border-style:dashed;opacity:.38;
+  box-shadow:inset 28px 0 0 color-mix(in srgb,var(--teal,#78d8c2) 7%,transparent);
+  background:radial-gradient(circle at 32% 36%,color-mix(in srgb,var(--teal,#78d8c2) 16%,transparent),transparent 55%);
+}
+.aura-moon .avatar-aura::before{border-radius:50%;border-color:color-mix(in srgb,var(--teal,#78d8c2) 22%,transparent)}
+.aura-moon .avatar-aura::after{inset:28px;border-color:color-mix(in srgb,var(--accent) 22%,transparent);opacity:.5}
+.aura-stars .avatar-aura{
+  border-radius:38% 62% 58% 42%;
+  transform:translate(-50%,-50%) rotate(24deg);
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 14%,transparent),transparent 62%);
+}
+.aura-stars .avatar-aura::before{
+  border-radius:48% 52% 42% 58%;
+  border-style:dotted;
+  transform:rotate(-18deg);
+}
+.aura-stars .avatar-aura::after{inset:18px;border-radius:62% 38% 48% 52%;border-color:color-mix(in srgb,var(--gold,#ffd166) 28%,transparent)}
+.aura-sun .avatar-aura{
+  border:1px solid color-mix(in srgb,var(--gold,#ffd166) 40%,transparent);
+  opacity:.36;
+  background:radial-gradient(circle,color-mix(in srgb,var(--gold,#ffd166) 22%,transparent) 0%,color-mix(in srgb,var(--gold,#ffd166) 8%,transparent) 40%,transparent 68%);
+  box-shadow:
+    0 0 0 8px color-mix(in srgb,var(--gold,#ffd166) 5%,transparent),
+    0 0 0 18px color-mix(in srgb,var(--gold,#ffd166) 3%,transparent);
+}
+.aura-sun .avatar-aura::before{
+  inset:-10px;border:1px solid color-mix(in srgb,var(--gold,#ffd166) 22%,transparent);
+  box-shadow:0 0 30px color-mix(in srgb,var(--gold,#ffd166) 18%,transparent);
+}
+.aura-sun .avatar-aura::after{
+  inset:12px;border:2px double color-mix(in srgb,var(--gold,#ffd166) 32%,transparent);
+}
+.aura-pulse .avatar-aura{
+  opacity:.36;
+  box-shadow:
+    0 0 0 12px color-mix(in srgb,var(--teal,#78d8c2) 5%,transparent),
+    0 0 0 26px color-mix(in srgb,var(--teal,#78d8c2) 3%,transparent),
+    0 0 0 42px color-mix(in srgb,var(--teal,#78d8c2) 1.5%,transparent);
+  animation:auraPulse 3.8s ease-in-out infinite;
+}
+.aura-pulse .avatar-aura::before{inset:-8px;border-color:color-mix(in srgb,var(--teal,#78d8c2) 28%,transparent)}
+.aura-pulse .avatar-aura::after{inset:16px;border-style:solid;opacity:.55}
+.aura-echo .avatar-aura{
+  opacity:.36;
+  box-shadow:
+    0 0 0 10px color-mix(in srgb,var(--gold,#ffd166) 5%,transparent),
+    0 0 0 22px color-mix(in srgb,var(--gold,#ffd166) 3%,transparent),
+    0 0 0 36px color-mix(in srgb,var(--gold,#ffd166) 1.5%,transparent);
+  animation:auraEcho 5.4s ease-in-out infinite;
+}
+.aura-echo .avatar-aura::before{inset:-12px;border-color:color-mix(in srgb,var(--accent) 20%,transparent)}
+.aura-echo .avatar-aura::after{inset:14px;border-style:dotted;opacity:.65}
+.avatar-prop-label{
+  border-color:color-mix(in srgb,var(--gold,#ffd166) 42%,transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 0 12px color-mix(in srgb,var(--accent) 8%,transparent),
+    0 8px 16px rgba(7,10,19,.32),
+    0 0 0 1px color-mix(in srgb,var(--gold,#ffd166) 10%,transparent);
+  letter-spacing:.06em;
+}
+.layered-avatar.compact{filter:drop-shadow(0 12px 14px rgba(7,10,19,.35));}
+.layered-avatar.compact::after{width:150px;height:16px;bottom:4px;opacity:.85}
+.layered-avatar.compact .avatar-prop-label{
+  max-width:72px;padding:5px 9px;font-size:10px;font-weight:700;
+  top:108px;letter-spacing:.04em;
+}
+.layered-avatar.compact .avatar-accessory{width:50px;height:50px;font-size:24px}
+
+
+.layered-avatar.compact .avatar-aura{opacity:.28}
+
+
+/* ——— 3. Character title & mood capsule ——— */
+.character-title{align-items:flex-end;gap:18px;margin:32px 0 18px;}
+.character-title>div{min-width:0;}
+.character-title h1{
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-size:clamp(34px,5vw,48px);letter-spacing:.04em;
+  color:var(--paper);text-shadow:0 2px 24px rgba(255,209,102,.08);
+}
+.character-title .eyebrow{margin-bottom:8px;}
+.character-title p:not(.eyebrow){
+  color:color-mix(in srgb,var(--muted) 92%,transparent);
+  font-size:13px;letter-spacing:.04em;
+}
+.mood-tag{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;
+  padding:9px 15px;border-radius:999px;font-size:12px;letter-spacing:.04em;
+  color:color-mix(in srgb,var(--teal) 88%,white);
+  border-color:color-mix(in srgb,var(--teal) 36%,transparent);
+  background:color-mix(in srgb,var(--teal) 6%,rgba(7,10,19,.55));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 20px rgba(7,10,19,.2);
+}
+.mood-tag i{box-shadow:0 0 10px color-mix(in srgb,var(--teal) 70%,transparent);}
+.character-page blockquote{
+  margin:0 0 4px;padding:11px 20px;
+  border-left:2px solid color-mix(in srgb,var(--gold) 70%,transparent);
+  border-radius:0 14px 14px 0;
+  color:color-mix(in srgb,var(--paper) 80%,transparent);
+  font-size:14px;line-height:1.85;
+  background:linear-gradient(90deg,rgba(255,209,102,.05),transparent 55%);
+}
+
+/* ——— 4. Action grid: four ritual entries ——— */
+.action-grid{gap:14px;margin:28px 0;}
+.action-grid button{
+  gap:10px;min-height:118px;padding:18px 16px 16px;border-radius:18px;
+  color:#a8adbb;
+  border-color:rgba(246,238,220,.1);
+  background:
+    linear-gradient(165deg,rgba(255,255,255,.06),rgba(255,255,255,.02)),
+    rgba(13,18,32,.55);
+  box-shadow:0 12px 28px rgba(7,10,19,.18),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease,color .28s ease;
+}
+.action-grid button svg{
+  width:34px;height:34px;padding:8px;box-sizing:border-box;
+  border-radius:12px;color:var(--gold);
+  background:color-mix(in srgb,var(--gold) 10%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 18%,transparent);
+  transition:transform .28s ease,box-shadow .28s ease,background .28s ease;
+}
+.action-grid button::after{
+  color:#5e6476;transition:color .25s ease,transform .25s ease;
+}
+.action-grid button small{font-size:10px;color:#717687;line-height:1.45;}
+.action-grid button:hover{
+  transform:translateY(-4px);
+  color:var(--paper);
+  border-color:color-mix(in srgb,var(--gold) 45%,transparent);
+  background:
+    linear-gradient(165deg,rgba(255,209,102,.08),rgba(255,255,255,.02)),
+    rgba(13,18,32,.6);
+  box-shadow:0 18px 36px rgba(7,10,19,.28),0 0 0 1px rgba(255,209,102,.08),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.action-grid button:hover svg{
+  transform:translateY(-2px) scale(1.05);
+  background:color-mix(in srgb,var(--gold) 16%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 32%,transparent),0 0 18px rgba(255,209,102,.18);
+}
+.action-grid button:hover::after{color:var(--gold);transform:translate(2px,-2px);}
+.action-grid button:hover small{color:#8b91a2;}
+.action-grid button:active{transform:translateY(-1px);}
+.action-grid button:focus-visible{
+  outline:1px solid color-mix(in srgb,var(--gold) 55%,transparent);
+  outline-offset:3px;
+}
+
+/* ——— 5. Info cards: label / value hierarchy ——— */
+.info-grid{gap:14px;}
+.info-card{
+  position:relative;padding:18px 18px 16px;border-radius:18px;overflow:hidden;
+  border-color:rgba(246,238,220,.1);
+  background:
+    linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.018)),
+    rgba(13,18,32,.5);
+  box-shadow:0 16px 36px rgba(7,10,19,.16),inset 0 1px 0 rgba(255,255,255,.04);
+}
+.info-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--gold),transparent 80%);
+  opacity:.5;
+}
+.info-card span{
+  margin-bottom:10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#7a8092;
+}
+.info-card strong{
+  font-size:14px;font-weight:500;color:var(--paper);line-height:1.45;
+}
+.info-card small{
+  display:block;margin-top:8px;font-size:10px;line-height:1.55;
+  color:#7a8092;
+}
+.color-dot{
+  width:14px;height:14px;flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 0 0 3px rgba(255,255,255,.04),0 4px 10px rgba(7,10,19,.35);
+}
+.info-card.mbti-info-card::before{
+  background:linear-gradient(180deg,var(--teal),transparent 80%);
+}
+.info-card.generated-prop-card{
+  grid-column:1/-1;
+  border-color:color-mix(in srgb,var(--gold) 28%,transparent);
+  background:
+    radial-gradient(circle at 92% 0%,rgba(255,209,102,.1),transparent 42%),
+    linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.018)),
+    rgba(13,18,32,.55);
+}
+.info-card.generated-prop-card::before{
+  width:100%;height:2px;bottom:auto;
+  background:linear-gradient(90deg,var(--gold),var(--teal),transparent);
+  opacity:.7;
+}
+.info-card.generated-prop-card strong{font-size:16px;letter-spacing:.02em;}
+.info-card.generated-prop-card small{max-width:52em;color:#848a9c;}
+
+/* ——— 6. Discover cards: cover stage + compact soul ——— */
+/* scoped under .discover-grid so this layer wins over later ui-polish card chrome */
+.discover-grid{gap:18px;}
+.discover-grid .discover-card{
+  display:flex;flex-direction:column;
+  padding:14px 14px 18px;border-radius:22px;
+  border-color:rgba(246,238,220,.1);
+  background:
+    linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.018)),
+    rgba(13,18,32,.55);
+  box-shadow:0 18px 40px rgba(7,10,19,.2),inset 0 1px 0 rgba(255,255,255,.04);
+}
+.discover-grid .discover-card:hover{
+  border-color:color-mix(in srgb,var(--gold) 38%,transparent);
+  background:
+    linear-gradient(165deg,rgba(255,209,102,.06),rgba(255,255,255,.02)),
+    rgba(13,18,32,.6);
+  box-shadow:0 22px 48px rgba(7,10,19,.28),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.discover-grid .discover-art{
+  height:200px;border-radius:16px;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--character-color) 46%,transparent),transparent 54%),
+    radial-gradient(circle at 82% 14%,rgba(255,209,102,.1),transparent 36%),
+    linear-gradient(165deg,#1b2844,var(--night-2,#0d1220) 72%);
+  box-shadow:inset 0 0 0 1px rgba(246,238,220,.08),inset 0 -32px 52px rgba(7,10,19,.38);
+}
+.discover-grid .discover-art::before{
+  content:"";position:absolute;left:18px;right:18px;top:16px;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(255,209,102,.28),transparent);
+}
+.discover-grid .discover-art::after{
+  inset:24px;
+  border-color:color-mix(in srgb,var(--gold) 22%,transparent);
+  box-shadow:0 0 0 12px rgba(255,255,255,.02);
+}
+.discover-grid .discover-art > i{
+  z-index:3;right:14px;top:12px;font-style:normal;
+  color:color-mix(in srgb,var(--gold) 80%,white);
+  text-shadow:0 0 12px rgba(255,209,102,.35);opacity:.9;
+}
+.discover-grid .discover-art .layered-avatar{z-index:1;margin-top:10px;filter:drop-shadow(0 12px 14px rgba(7,10,19,.35));}
+.discover-grid .discover-card h3{
+  margin:16px 4px 4px;
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-size:22px;font-weight:400;color:var(--paper);letter-spacing:.03em;
+}
+.discover-grid .discover-card p{margin:0 4px;font-size:12px;color:#8b91a2;}
+.discover-grid .discover-card small{margin:6px 4px 0;font-size:11px;color:var(--gold-deep,#dca841);}
+.discover-grid .discover-card .secondary-button{
+  margin:16px 4px 0;
+  border-color:rgba(246,238,220,.12);
+  color:var(--paper);
+  background:rgba(255,255,255,.05);
+  transition:border-color .25s ease,background .25s ease,color .25s ease,transform .25s ease;
+}
+.discover-grid .discover-card .secondary-button:hover{
+  border-color:color-mix(in srgb,var(--gold) 45%,transparent);
+  color:var(--gold);
+  background:color-mix(in srgb,var(--gold) 8%,transparent);
+  transform:translateX(2px);
+}
+
+/* legacy note removed */
+
+
+
+
+
+
+
+
+
+/* ——— 8. Mobile: stage & card convergence ——— */
+@media(max-width:800px){
+  .character-stage{height:340px;border-radius:22px;}
+  .character-stage::after{bottom:44px;width:170px;height:28px;}
+  .stage-vinyl{width:210px;height:210px;opacity:.4;}
+  .stage-glow{width:210px;height:210px;}
+  .stage-song{bottom:14px;padding:7px 11px;font-size:11px;max-width:calc(100% - 28px);}
+  .floating-note{right:12%;top:16%;font-size:18px;}
+  .character-title{flex-direction:column;align-items:flex-start;gap:12px;margin:22px 0 14px;}
+  .character-title h1{font-size:34px;}
+  .mood-tag{padding:7px 12px;font-size:11px;}
+  .character-page blockquote{padding:9px 14px;font-size:13px;}
+  .action-grid{gap:10px;margin:20px 0;}
+  .action-grid button{min-height:104px;padding:14px 12px;border-radius:16px;}
+  .action-grid button svg{width:30px;height:30px;padding:7px;}
+  .info-grid{grid-template-columns:1fr;gap:10px;}
+  .info-card{padding:15px 15px 14px;border-radius:16px;}
+  .discover-grid{gap:12px;}
+  .discover-grid .discover-art{height:180px;}
+  .discover-grid .discover-card{padding:12px 12px 16px;border-radius:18px;}
+}
+
+/* ——— 9. Aura / craft motion (transform + opacity only) ——— */
+@keyframes auraDot{
+  0%,100%{transform:translate(0,0) scale(1);opacity:.55}
+  50%{transform:translate(2px,-3px) scale(1.15);opacity:1}
+}
+@keyframes auraOrbitTilt{
+  0%,100%{transform:translate(-50%,-50%) rotate(-18deg) scaleX(1.08) scaleY(.92)}
+  50%{transform:translate(-50%,-50%) rotate(-10deg) scaleX(1.1) scaleY(.9)}
+}
+@keyframes auraPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}
+  50%{transform:translate(-50%,-50%) scale(1.05);opacity:.46}
+}
+@keyframes auraEcho{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.32}
+  50%{transform:translate(-50%,-50%) scale(1.04);opacity:.44}
+}
+
+/* ——— 10. Reduced motion: keep identity, drop drift ——— */
+@media(prefers-reduced-motion:reduce){
+  .stage-vinyl,.floating-note,.avatar-aura,.avatar-aura i,.avatar-accessory,
+  .action-grid button,.action-grid button svg,.action-grid button::after,
+  .discover-grid .discover-card,.discover-grid .discover-card .secondary-button,
+  .layered-avatar,.layered-avatar .avatar-body,.layered-avatar .avatar-head,.layered-avatar .avatar-hair{
+    animation:none!important;transition:none!important;
+  }
+}
+
+/* legacy plush block removed */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:800px){
+
+
+}

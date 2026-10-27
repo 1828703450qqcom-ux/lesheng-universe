@@ -1,0 +1,465 @@
+.auth-page{position:relative;min-height:calc(100vh - 64px);display:grid;place-items:center;overflow:hidden;padding:34px 20px 70px;isolation:isolate}.auth-page::before{content:"";position:absolute;inset:10% 20%;z-index:-1;border-radius:50%;background:radial-gradient(circle,rgba(102,145,236,.16),transparent 68%);filter:blur(18px)}.auth-card{position:relative;width:min(460px,100%);padding:34px 38px 27px;border:1px solid rgba(255,209,102,.22);border-radius:26px;background:linear-gradient(145deg,rgba(18,27,50,.96),rgba(7,12,27,.96));box-shadow:0 28px 80px rgba(0,0,0,.38);overflow:hidden}.auth-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(circle at 50% 20%,#000,transparent 78%)}.auth-card>*{position:relative;z-index:1}.auth-brand{display:flex;align-items:center;gap:10px}.auth-brand .brand-mark{font-size:27px}.auth-brand strong,.auth-brand small{display:block}.auth-brand strong{font-size:16px;letter-spacing:.12em}.auth-brand small{margin-top:3px;color:#76829d;font:8px monospace;letter-spacing:.18em}.auth-copy{margin:43px 0 25px}.auth-copy h1{max-width:370px;margin:9px 0 12px;font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;font-size:clamp(29px,5vw,43px);font-weight:400;line-height:1.22}.auth-copy>p:last-child{margin:0;color:#8f98ad;font-size:12px;line-height:1.7}.auth-form{display:grid;gap:16px}.auth-form label{display:grid;gap:8px}.auth-form label span{color:#9da7b8;font-size:11px}.auth-form input{width:100%;height:45px;padding:0 14px;border:1px solid rgba(255,255,255,.12);border-radius:12px;outline:none;background:rgba(255,255,255,.05);color:var(--ink);font-size:13px}.auth-form input:focus{border-color:rgba(255,209,102,.72);box-shadow:0 0 0 3px rgba(255,209,102,.08)}.auth-submit{width:100%;margin-top:4px;min-height:46px}.auth-submit:disabled{cursor:wait;opacity:.62}.auth-error{margin:0;padding:10px 12px;border:1px solid rgba(255,125,125,.28);border-radius:10px;background:rgba(180,64,76,.12);color:#ffb5ae;font-size:11px;line-height:1.5}.auth-switch{margin-top:22px;text-align:center;color:#747e93;font-size:11px}.auth-switch a{margin-left:5px;color:var(--gold)}.auth-privacy{display:flex;align-items:center;justify-content:center;gap:5px;margin:20px 0 0;color:#667187;font-size:9px}.auth-privacy svg{color:var(--teal)}.auth-orbit{position:absolute;z-index:-1;border:1px solid rgba(120,216,194,.18);border-radius:50%;pointer-events:none}.auth-orbit-one{width:520px;height:190px;transform:rotate(-18deg);left:-170px;bottom:12%}.auth-orbit-two{width:420px;height:160px;transform:rotate(28deg);right:-130px;top:16%;border-color:rgba(255,209,102,.2)}.auth-top-link{padding:6px 9px;border:1px solid rgba(255,209,102,.3);border-radius:999px;color:var(--gold);font-size:10px}.auth-top-link:hover{background:rgba(255,209,102,.1)}
+@media(max-width:800px){.auth-page{min-height:calc(100vh - 115px);padding:22px 16px 90px}.auth-card{padding:27px 22px 23px;border-radius:21px}.auth-copy{margin:35px 0 22px}.auth-copy h1{font-size:31px}.auth-orbit{opacity:.45}.auth-top-link{padding:5px 7px}.auth-privacy{line-height:1.5;text-align:center}}
+
+/* Mobile stability: keep the star field visible but stop expensive full-screen repaints and flicker. */
+@media(max-width:800px){
+  .star-map-background{contain:paint;will-change:auto}
+  .star-map-background *{animation:none!important;transition:none!important}
+  .star-map-background::after{display:none}
+  .star-dust{animation:none!important;opacity:.3!important}
+  .shooting-star{display:none!important}
+  .constellation-map{opacity:.24;transform:none!important;transition:none!important}
+  .big-dipper-map{opacity:.38;translate:none!important;transform:none!important;animation:none!important;transition:none!important}
+  .star-nebula{filter:none!important;opacity:.14!important}
+  .programmatic-stars i,.programmatic-dipper circle,.programmatic-constellation circle{animation:none!important;opacity:.72}
+  .home-character-halo,.solar-orbit,.onboarding-orbit,.plaza-orbit-notes i,.stage-bars i,.stage-live-dot::before{animation:none!important}
+  .layered-avatar,.layered-avatar *,.plaza-person span,.hero-avatar,.generation-avatar{animation:none!important;transition:none!important}
+  .topbar,.context-nav,.section-guide-overlay{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .home-page,.plaza-page,.content-page,.creation-page,.character-page,.social-page{content-visibility:auto;contain:layout paint}
+}
+
+/* 登录态顶栏：退出按钮复用胶囊样式，用户名与头像布局 */
+.topbar-meta{display:flex;align-items:center;gap:6px}
+button.auth-top-link{font-family:inherit;font-size:10px;line-height:1;background:transparent;cursor:pointer;white-space:nowrap}
+.auth-top-link.auth-logout{color:#c9b8a0;border-color:rgba(255,255,255,.22)}
+.auth-top-link.auth-logout:hover{background:rgba(255,255,255,.1)}
+
+
+/* =============================================================================
+   Auth polish — 星空夜航 · 奢感音乐宇宙
+   Glass card, serif title, gold focus ring, premium CTA, soft orbits
+   ============================================================================= */
+
+/* Chinese serif stack so display glyphs never fall to tofu boxes */
+.auth-page .auth-brand strong,
+.auth-page .auth-copy h1{
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-synthesis:weight;
+  text-rendering:optimizeLegibility;
+}
+
+/* --- Page atmosphere --- */
+.auth-page{
+  padding-top:48px;
+  padding-bottom:80px;
+}
+.auth-page::before{
+  inset:6% 14%;
+  background:radial-gradient(circle,rgba(123,167,232,.14),rgba(120,216,194,.05) 42%,transparent 68%);
+  filter:blur(28px);
+}
+
+/* Soft vignette so the card lifts off the starfield */
+.auth-page::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%,transparent 30%,rgba(7,10,19,.45) 100%);
+}
+
+/* --- Glass card: layered depth, gold rim, top hairline / brand halo --- */
+.auth-page .auth-card{
+  width:min(472px,100%);
+  padding:40px 40px 32px;
+  border-radius:28px;
+  border:1px solid rgba(255,209,102,.3);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%,rgba(255,209,102,.08),transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 100%,rgba(120,216,194,.05),transparent 50%),
+    linear-gradient(155deg,rgba(24,34,62,.93),rgba(13,18,32,.95) 48%,rgba(7,10,19,.97));
+  box-shadow:
+    0 40px 110px rgba(0,0,0,.55),
+    0 14px 40px rgba(0,0,0,.32),
+    0 0 0 1px rgba(255,209,102,.1),
+    0 0 48px rgba(255,209,102,.06),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 0 0 1px rgba(255,255,255,.02),
+    inset 0 -40px 80px rgba(7,10,19,.25);
+  backdrop-filter:blur(20px) saturate(1.05);
+  -webkit-backdrop-filter:blur(20px) saturate(1.05);
+}
+/* gold hairline highlight along the top edge */
+.auth-page .auth-card::before{
+  content:"";
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:0;
+  height:1px;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,209,102,.7) 50%,transparent);
+  box-shadow:0 0 12px rgba(255,209,102,.25);
+}
+.auth-page .auth-card::after{
+  opacity:.1;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(circle at 50% 12%,#000,transparent 74%);
+}
+
+/* --- Brand lockup + quiet gold halo --- */
+.auth-page .auth-brand{
+  gap:12px;
+  position:relative;
+}
+.auth-page .auth-brand::before{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:50%;
+  width:72px;
+  height:72px;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,209,102,.16),transparent 68%);
+  filter:blur(10px);
+  pointer-events:none;
+}
+.auth-page .auth-brand .brand-mark{
+  position:relative;
+  font-size:28px;
+  color:#ffd166;
+  text-shadow:0 0 18px rgba(255,209,102,.4),0 0 36px rgba(255,209,102,.15);
+}
+.auth-page .auth-brand strong{
+  font-size:17px;
+  font-weight:400;
+  letter-spacing:.16em;
+  color:#f6eedc;
+}
+.auth-page .auth-brand small{
+  margin-top:4px;
+  color:rgba(118,130,157,.9);
+  font:8px/1 monospace;
+  letter-spacing:.22em;
+}
+
+/* --- Serif title: poster rhythm, CJK-safe wrapping --- */
+.auth-page .auth-copy{margin:42px 0 28px}
+.auth-page .auth-copy .eyebrow{
+  margin-bottom:12px;
+  color:rgba(255,209,102,.78);
+  letter-spacing:.22em;
+}
+.auth-page .auth-copy h1{
+  max-width:390px;
+  margin:10px 0 14px;
+  font-size:clamp(29px,5.4vw,42px);
+  font-weight:400;
+  line-height:1.24;
+  letter-spacing:.06em;
+  color:#f6eedc;
+  text-shadow:0 2px 20px rgba(7,10,19,.5),0 0 40px rgba(255,209,102,.05);
+  text-wrap:balance;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.auth-page .auth-copy>p:last-child{
+  margin:0;
+  color:rgba(143,152,173,.92);
+  font-size:12.5px;
+  line-height:1.8;
+  letter-spacing:.03em;
+}
+
+/* --- Form rhythm: label / input spacing + gold focus ring --- */
+.auth-page .auth-form{gap:18px}
+.auth-page .auth-form label{gap:9px}
+.auth-page .auth-form label span{
+  color:rgba(157,167,184,.95);
+  font-size:11px;
+  letter-spacing:.14em;
+}
+.auth-page .auth-form input{
+  width:100%;
+  height:48px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;
+  outline:none;
+  background:rgba(255,255,255,.045);
+  color:#f6eedc;
+  font-size:13.5px;
+  letter-spacing:.02em;
+  caret-color:#ffd166;
+  transition:border-color .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.auth-page .auth-form input::placeholder{
+  color:rgba(143,152,173,.48);
+  letter-spacing:.04em;
+}
+.auth-page .auth-form input:hover{
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.065);
+}
+.auth-page .auth-form input:focus{
+  border-color:rgba(255,209,102,.78);
+  background:rgba(255,255,255,.075);
+  box-shadow:0 0 0 3px rgba(255,209,102,.12),0 0 0 6px rgba(255,209,102,.05),0 4px 18px rgba(7,10,19,.25);
+}
+/* theme-warm error affordance (used when field is marked invalid) */
+.auth-page .auth-form input.is-error,
+.auth-page .auth-form input[aria-invalid='true']{
+  border-color:rgba(255,125,125,.55);
+  background:rgba(180,64,76,.08);
+  box-shadow:0 0 0 3px rgba(255,125,125,.1);
+}
+
+/* --- Premium gold CTA: gradient bloom + fine sheen --- */
+.auth-page button.primary-button.auth-submit{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  margin-top:6px;
+  min-height:50px;
+  padding:14px 22px;
+  overflow:hidden;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.1em;
+  color:#1a1408;
+  background:linear-gradient(135deg,#fff0c0 0%,#ffe090 18%,#ffd166 48%,#e0ad48 78%,#dca841 100%);
+  border:1px solid rgba(255,236,180,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    inset 0 -1px 0 rgba(220,168,65,.35),
+    inset 0 0 18px rgba(255,248,220,.18),
+    0 0 0 1px rgba(255,209,102,.18),
+    0 12px 32px rgba(255,209,102,.24),
+    0 22px 48px rgba(7,10,19,.35);
+  transition:transform .24s cubic-bezier(.2,.7,.2,1),box-shadow .24s ease,filter .24s ease;
+}
+/* thin specular sweep on hover */
+.auth-page button.primary-button.auth-submit::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.4) 50%,transparent 58%);
+  transform:translateX(-130%);
+  transition:transform .65s ease;
+}
+.auth-page button.primary-button.auth-submit:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.68),
+    inset 0 -1px 0 rgba(220,168,65,.4),
+    inset 0 0 22px rgba(255,248,220,.22),
+    0 0 0 1px rgba(255,209,102,.34),
+    0 16px 40px rgba(255,209,102,.36),
+    0 28px 56px rgba(7,10,19,.4);
+}
+.auth-page button.primary-button.auth-submit:hover::before{
+  transform:translateX(130%);
+}
+.auth-page button.primary-button.auth-submit:active{
+  transform:translateY(0) scale(.985);
+  box-shadow:inset 0 2px 8px rgba(120,86,10,.28),0 6px 16px rgba(7,10,19,.28);
+}
+.auth-page button.primary-button.auth-submit:disabled{
+  cursor:wait;
+  opacity:.7;
+  transform:none;
+  filter:saturate(.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 8px 22px rgba(7,10,19,.3);
+  animation:authWaitPulse 1.4s ease-in-out infinite;
+}
+.auth-page button.primary-button.auth-submit:disabled::before{
+  display:none;
+}
+
+/* --- Error / switch / privacy hierarchy --- */
+.auth-page .auth-error{
+  margin:0;
+  padding:11px 14px;
+  border:1px solid rgba(255,125,125,.32);
+  border-left:2px solid rgba(255,125,125,.55);
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(180,64,76,.16),rgba(120,30,50,.1));
+  color:#ffb5ae;
+  font-size:11.5px;
+  line-height:1.6;
+  letter-spacing:.02em;
+}
+.auth-page .auth-switch{
+  margin-top:26px;
+  text-align:center;
+  color:rgba(116,126,147,.95);
+  font-size:12px;
+  letter-spacing:.05em;
+}
+.auth-page .auth-switch a{
+  position:relative;
+  margin-left:6px;
+  padding-bottom:2px;
+  color:#ffd166;
+  text-decoration:none;
+  transition:color .22s ease;
+}
+.auth-page .auth-switch a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,209,102,.2),rgba(255,230,160,.85),rgba(255,209,102,.2));
+  transform:scaleX(.35);
+  transform-origin:left center;
+  transition:transform .28s cubic-bezier(.2,.7,.2,1);
+}
+.auth-page .auth-switch a:hover{
+  color:#ffe6a0;
+}
+.auth-page .auth-switch a:hover::after{
+  transform:scaleX(1);
+}
+
+.auth-page .auth-privacy{
+  gap:7px;
+  margin:24px 0 0;
+  color:rgba(102,113,135,.9);
+  font-size:10px;
+  letter-spacing:.05em;
+}
+.auth-page .auth-privacy svg{color:rgba(120,216,194,.85)}
+
+/* --- Orbits: quieter rings + sparse star glints --- */
+.auth-page .auth-orbit{
+  z-index:-1;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:.38;
+  filter:blur(.5px);
+}
+.auth-page .auth-orbit-one{
+  width:540px;
+  height:200px;
+  left:-180px;
+  bottom:10%;
+  transform:rotate(-18deg);
+  border:1px solid rgba(120,216,194,.1);
+  box-shadow:0 0 40px rgba(120,216,194,.03) inset;
+}
+.auth-page .auth-orbit-two{
+  width:440px;
+  height:170px;
+  right:-140px;
+  top:14%;
+  transform:rotate(28deg);
+  border:1px solid rgba(255,209,102,.1);
+  box-shadow:0 0 36px rgba(255,209,102,.03) inset;
+}
+/* poetic star glints pinned to each orbit */
+.auth-page .auth-orbit-one::before,
+.auth-page .auth-orbit-two::before{
+  content:"";
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:rgba(246,238,220,.55);
+  box-shadow:
+    48px 18px 0 -1px rgba(246,238,220,.28),
+    110px -8px 0 0 rgba(255,209,102,.35),
+    170px 28px 0 -1px rgba(246,238,220,.22),
+    240px 4px 0 0 rgba(120,216,194,.3),
+    300px 22px 0 -1px rgba(246,238,220,.2),
+    360px -6px 0 0 rgba(255,209,102,.25);
+  filter:blur(.3px);
+  opacity:.7;
+}
+.auth-page .auth-orbit-two::before{
+  right:40px;
+  top:18px;
+  box-shadow:
+    -40px 14px 0 -1px rgba(246,238,220,.25),
+    -95px -4px 0 0 rgba(255,209,102,.28),
+    -150px 20px 0 -1px rgba(246,238,220,.18),
+    -210px 2px 0 0 rgba(120,216,194,.25);
+}
+
+/* --- Topbar auth pills stay quiet --- */
+.auth-top-link{
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+
+/* --- Staggered reveal for the auth stack --- */
+@keyframes authFadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes authCardIn{
+  from{opacity:0;transform:translateY(18px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes authWaitPulse{
+  0%,100%{opacity:.68}
+  50%{opacity:.82}
+}
+.auth-page .auth-orbit-one{animation:authFadeUp 1s ease .05s both}
+.auth-page .auth-orbit-two{animation:authFadeUp 1s ease .15s both}
+.auth-page .auth-card{animation:authCardIn .8s cubic-bezier(.2,.7,.2,1) .08s both}
+.auth-page .auth-brand{animation:authFadeUp .6s ease .22s both}
+.auth-page .auth-copy{animation:authFadeUp .65s ease .3s both}
+.auth-page .auth-form{animation:authFadeUp .65s ease .42s both}
+.auth-page .auth-switch{animation:authFadeUp .6s ease .54s both}
+.auth-page .auth-privacy{animation:authFadeUp .6s ease .62s both}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion:reduce){
+  .auth-page .auth-card,
+  .auth-page .auth-brand,
+  .auth-page .auth-copy,
+  .auth-page .auth-form,
+  .auth-page .auth-switch,
+  .auth-page .auth-privacy,
+  .auth-page .auth-orbit-one,
+  .auth-page .auth-orbit-two{
+    animation:none!important;
+  }
+  .auth-page .auth-form input,
+  .auth-page button.primary-button.auth-submit,
+  .auth-page .auth-switch a,
+  .auth-page .auth-switch a::after{
+    transition:none;
+  }
+  .auth-page button.primary-button.auth-submit::before{
+    display:none;
+  }
+  .auth-page button.primary-button.auth-submit:disabled{
+    animation:none;
+  }
+}
+
+/* --- Mobile hierarchy (375px comfortable, title keeps CJK lines intact) --- */
+@media(max-width:800px){
+  .auth-page{padding-top:28px;padding-bottom:96px}
+  .auth-page .auth-card{
+    padding:28px 22px 24px;
+    border-radius:22px;
+  }
+  .auth-page .auth-copy{margin:32px 0 22px}
+  .auth-page .auth-copy h1{
+    max-width:100%;
+    font-size:clamp(26px,7.4vw,31px);
+    line-height:1.32;
+    letter-spacing:.04em;
+  }
+  .auth-page .auth-form{gap:15px}
+  .auth-page .auth-form input{height:48px;border-radius:12px}
+  .auth-page button.primary-button.auth-submit{
+    min-height:48px;
+    letter-spacing:.06em;
+  }
+  .auth-page .auth-orbit{opacity:.24}
+  .auth-page .auth-orbit-one::before,
+  .auth-page .auth-orbit-two::before{opacity:.4}
+  .auth-page .auth-privacy{line-height:1.55;text-align:center}
+}

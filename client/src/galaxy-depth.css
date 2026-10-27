@@ -1,0 +1,181 @@
+.home-cinematic .galaxy-depth {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 1100px;
+  contain: layout paint;
+}
+.galaxy-depth-world {
+  position: absolute;
+  inset: -5%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--galaxy-tilt-x, 0deg)) rotateY(var(--galaxy-tilt-y, 0deg));
+  transition: transform .36s ease-out;
+}
+.galaxy-depth-stars { position: absolute; inset: 0; transform-style: preserve-3d; }
+.galaxy-depth-far { transform: translateZ(-190px) scale(1.15); opacity: .62; }
+.galaxy-depth-near { transform: translateZ(115px) scale(.94); opacity: .68; }
+.galaxy-depth-stars i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: #f6e3a8;
+  box-shadow: 0 0 9px 2px rgba(255, 211, 119, .5);
+  animation: galaxyTwinkle 3.6s ease-in-out infinite alternate;
+}
+.galaxy-depth-near i { width: 2px; height: 2px; background: #c3dfff; box-shadow: 0 0 11px 2px rgba(130, 189, 255, .65); }
+.galaxy-depth-aurora {
+  position: absolute;
+  right: 1%; top: 8%; width: 54%; height: 66%;
+  transform: translateZ(-115px) rotate(-19deg);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 55% 45%, rgba(63, 107, 205, .22), rgba(68, 55, 147, .12) 38%, transparent 69%);
+  filter: blur(26px);
+}
+.galaxy-depth-saturn {
+  position: absolute;
+  right: 3%; top: 3%;
+  width: clamp(320px, 33vw, 480px);
+  aspect-ratio: 1;
+  transform: translateZ(-80px);
+  transform-style: preserve-3d;
+  opacity: .96;
+  isolation: isolate;
+}
+.planet-3d-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.planet-3d-canvas:active { cursor: grabbing; }
+.planet-3d-canvas:focus-visible { outline: none; filter: drop-shadow(0 0 9px rgba(255, 219, 148, .45)); }
+.planet-rotate-hint {
+  position: absolute;
+  right: 5%; bottom: 1%;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 220, 154, .18);
+  border-radius: 999px;
+  background: rgba(7, 15, 37, .55);
+  color: rgba(232, 223, 207, .72);
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: .16em;
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(3, 8, 21, .9);
+}
+.planet-css-fallback {
+  position: absolute;
+  left: 25%; top: 25%;
+  width: 50%;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+.planet-3d-canvas.planet-mesh-ready + .planet-css-fallback { visibility: hidden; }
+.galaxy-depth-atmosphere {
+  position: absolute;
+  inset: -11%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 31%, rgba(167, 212, 255, .34), rgba(74, 127, 221, .15) 42%, transparent 68%);
+  filter: blur(15px);
+}
+.galaxy-depth-globe {
+  position: absolute;
+  inset: 5%;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(182, 221, 255, .36);
+  background:
+    radial-gradient(ellipse at 32% 22%, rgba(235, 245, 255, .75), transparent 12%),
+    radial-gradient(circle at 32% 27%, #90b8e2 0%, #497fba 23%, #244a82 49%, #0c244b 78%, #071127 100%);
+  box-shadow:
+    inset -28px -23px 37px rgba(1, 6, 25, .86),
+    inset 13px 11px 24px rgba(213, 237, 255, .28),
+    inset 0 0 0 2px rgba(134, 196, 255, .08),
+    0 0 31px rgba(75, 141, 238, .26),
+    0 22px 42px rgba(2, 8, 27, .34);
+  transform: translateZ(18px);
+}
+.galaxy-depth-globe::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 25% 24%, transparent 12%, rgba(235, 248, 255, .17) 34%, transparent 57%);
+  box-shadow: inset 2px 2px 0 rgba(239, 249, 255, .24);
+  pointer-events: none;
+}
+.galaxy-depth-bands,
+.galaxy-depth-storm,
+.galaxy-depth-terminator { position: absolute; display: block; pointer-events: none; }
+.galaxy-depth-bands {
+  inset: -15%;
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  background: repeating-linear-gradient(0deg,
+    transparent 0 10%, rgba(201, 225, 245, .18) 11% 13%,
+    rgba(16, 46, 93, .12) 15% 18%, transparent 20% 27%);
+  mask-image: radial-gradient(ellipse at 45% 42%, #000 24%, rgba(0, 0, 0, .8) 59%, transparent 80%);
+}
+.galaxy-depth-storm {
+  left: 36%; top: 48%; width: 30%; height: 12%;
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  background: radial-gradient(ellipse, rgba(212, 234, 255, .47), rgba(87, 143, 206, .25) 49%, transparent 75%);
+  box-shadow: 0 0 14px rgba(174, 215, 255, .16);
+}
+.galaxy-depth-terminator {
+  inset: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(108deg, transparent 27%, rgba(6, 19, 47, .05) 52%, rgba(2, 9, 30, .66) 87%),
+    radial-gradient(ellipse at 70% 83%, transparent 33%, rgba(2, 8, 29, .28) 78%);
+}
+.galaxy-depth-ring {
+  position: absolute;
+  left: -38%; top: 28%;
+  width: 176%; height: 48%;
+  border-radius: 50%;
+  transform: rotateX(68deg) rotateZ(-19deg);
+}
+.galaxy-depth-ring-back {
+  z-index: 1;
+  border: 16px solid rgba(205, 179, 132, .38);
+  box-shadow: 0 0 0 3px rgba(127, 173, 220, .2), inset 0 0 0 3px rgba(255, 223, 169, .17), 0 0 26px rgba(255, 213, 147, .17);
+}
+.galaxy-depth-ring-front {
+  z-index: 3;
+  clip-path: inset(48% -8% -15% -8%);
+  border: 16px solid rgba(252, 221, 163, .78);
+  box-shadow: 0 0 0 3px rgba(155, 197, 246, .31), inset 0 0 0 3px rgba(255, 244, 215, .28), 0 12px 17px rgba(4, 11, 30, .45);
+  filter: drop-shadow(0 0 5px rgba(247, 206, 143, .38));
+}
+.galaxy-depth-moon { position: absolute; z-index: 4; right: -36%; bottom: 8%; width: 19px; height: 19px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #d7d4d1, #5c6e9d 42%, #152342 82%); box-shadow: 0 0 18px rgba(174, 201, 251, .4); }
+.home-soul-scene .solar-orbit-a { width: 91%; height: 65%; transform: translate(-50%, -50%) rotateZ(-19deg) rotateX(67deg); }
+.home-soul-scene .solar-orbit-b { width: 84%; height: 78%; transform: translate(-50%, -50%) rotateZ(35deg) rotateX(54deg); }
+.home-soul-scene .solar-orbit-c { width: 74%; height: 87%; transform: translate(-50%, -50%) rotateZ(82deg) rotateX(53deg); }
+@keyframes galaxyTwinkle { 50% { opacity: .35; transform: scale(.6); } }
+@media (max-width: 800px) {
+  .galaxy-depth-world { transform: none; transition: none; }
+  .galaxy-depth-aurora { filter: none; opacity: .5; }
+  .galaxy-depth-saturn { right: -3%; top: 66%; width: 220px; opacity: .64; }
+  .planet-rotate-hint { display: none; }
+  .galaxy-depth-near { display: none; }
+  .galaxy-depth-stars i { animation: none; }
+  .home-soul-scene .solar-orbit-a { width: 96%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-depth-world { transform: none; transition: none; }
+  .galaxy-depth-stars i { animation: none; }
+  .home-soul-scene .hero-avatar,
+  .home-soul-scene .hero-avatar .layered-avatar { animation: none !important; opacity: 1 !important; }
+}

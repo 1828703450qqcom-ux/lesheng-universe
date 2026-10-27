@@ -1,0 +1,174 @@
+/* avatar-face.css — unmistakably OPEN anime eyes */
+.avatar-face {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* brows */
+.brow {
+  position: absolute;
+  top: 36px;
+  width: 16px;
+  height: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--hair) 80%, black);
+  opacity: 0.7;
+  z-index: 2;
+}
+.brow.left { left: 24px; transform: rotate(-6deg); }
+.brow.right { right: 24px; transform: rotate(6deg); }
+.brow-flat .brow { height: 3px; border-radius: 2px; transform: none; }
+.brow-arc .brow { height: 5px; border-radius: 50% 50% 40% 40%; }
+.brow-lift .brow { transform: rotate(-12deg); }
+.brow-lift .brow.right { transform: rotate(12deg); }
+.brow-soft .brow { opacity: 0.5; height: 4px; }
+
+/* ===== OPEN EYES (never a closed curve) ===== */
+.eye {
+  position: absolute;
+  top: 48px;
+  width: 22px;
+  height: 28px;
+  display: block;
+  border-radius: 50%;
+  background: #fffdf9;
+  overflow: hidden;
+  z-index: 3;
+  box-shadow:
+    0 0 0 1.5px color-mix(in srgb, var(--eye) 35%, black),
+    inset 0 -2px 3px color-mix(in srgb, var(--eye) 12%, transparent);
+}
+.eye.left { left: 22px; }
+.eye.right { right: 22px; }
+
+/* iris */
+.eye > b {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 14px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 55%, #120c18 0 28%, transparent 29%),
+    radial-gradient(circle at 42% 38%, color-mix(in srgb, var(--eye) 70%, white) 0 12%, transparent 13%),
+    linear-gradient(180deg, color-mix(in srgb, var(--eye) 80%, white) 0%, var(--eye) 55%, color-mix(in srgb, var(--eye) 60%, #0a0610) 100%);
+}
+
+/* highlights */
+.eye > u {
+  position: absolute;
+  left: 18%;
+  top: 14%;
+  width: 7px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+.eye > s {
+  position: absolute;
+  right: 18%;
+  bottom: 18%;
+  width: 3.5px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* style variants — all stay OPEN */
+.eyes-almond .eye {
+  width: 24px;
+  height: 22px;
+  top: 54px;
+  border-radius: 50% 50% 42% 42%;
+}
+.eyes-round .eye {
+  width: 22px;
+  height: 28px;
+  top: 48px;
+}
+.eyes-dreamy .eye {
+  width: 22px;
+  height: 30px;
+  top: 48px;
+  border-radius: 50%;
+}
+.eyes-sharp .eye {
+  width: 22px;
+  height: 20px;
+  top: 54px;
+  border-radius: 40% 55% 35% 45%;
+}
+.eyes-smile .eye {
+  width: 22px;
+  height: 24px;
+  top: 50px;
+  border-radius: 50%;
+}
+
+/* nose */
+.nose {
+  position: absolute;
+  left: 50%;
+  top: 82px;
+  width: 4px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--skin-shadow) 30%, transparent);
+  z-index: 1;
+}
+
+/* mouth — tiny smile line, NO fill blob */
+.mouth {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  width: 11px;
+  height: 5px;
+  transform: translateX(-50%);
+  border: 0;
+  border-bottom: 2px solid var(--lip);
+  border-radius: 0 0 8px 8px;
+  background: transparent !important;
+  z-index: 2;
+}
+.expression-joy .mouth { width: 13px; height: 6px; top: 91px; background: transparent !important; }
+.expression-quiet .mouth,
+.expression-thoughtful .mouth { width: 7px; top: 93px; background: transparent !important; }
+.expression-calm .mouth { width: 9px; top: 93px; background: transparent !important; }
+
+/* blush on cheeks */
+.blush {
+  position: absolute;
+  top: 78px;
+  width: 13px;
+  height: 7px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.blush.left {
+  left: 16px;
+  background: radial-gradient(circle, color-mix(in srgb, #f2a0a8 48%, transparent), transparent 70%);
+}
+.blush.right {
+  right: 16px;
+  background: radial-gradient(circle, color-mix(in srgb, #f2a0a8 48%, transparent), transparent 70%);
+}
+.cheeks-glow .blush { width: 16px; height: 9px; filter: blur(0.3px); }
+.cheeks-spark .blush {
+  width: 9px;
+  height: 9px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 50%, #f2a0a8), transparent 75%);
+}
+.cheeks-freckle .blush {
+  width: 4px;
+  height: 3px;
+  background: #c98878;
+  opacity: 0.5;
+}
+.cheeks-freckle .blush.left { box-shadow: 6px 2px #c98878, -5px 2px #c98878; }
+.cheeks-freckle .blush.right { box-shadow: -6px 2px #c98878, 5px 2px #c98878; }

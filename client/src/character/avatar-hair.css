@@ -1,0 +1,153 @@
+/* avatar-hair.css — soft bangs above eyes + side frames (never cover face) */
+.avatar-hair {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 116px;
+  height: 40px;
+  transform: translateX(-50%);
+  border-radius: 52% 52% 38% 38%;
+  background:
+    linear-gradient(125deg, color-mix(in srgb, var(--hair-highlight) 55%, white) 0%, var(--hair-highlight) 14%, var(--hair) 52%, color-mix(in srgb, var(--hair) 72%, black) 100%);
+  z-index: 4;
+  box-shadow: inset -6px -4px 10px rgba(0, 0, 0, 0.16);
+  pointer-events: none;
+}
+
+/* side locks — frame cheeks, short enough to not hide face */
+.avatar-hair .side {
+  position: absolute;
+  top: 14px;
+  width: 14px;
+  height: 36px;
+  background: linear-gradient(180deg, var(--hair), color-mix(in srgb, var(--hair) 80%, black));
+}
+.avatar-hair .side.left {
+  left: -3px;
+  border-radius: 12px 8px 10px 12px;
+  transform: rotate(6deg);
+}
+.avatar-hair .side.right {
+  right: -3px;
+  border-radius: 8px 12px 12px 10px;
+  transform: rotate(-6deg);
+}
+
+/* sheen */
+.avatar-hair .sheen {
+  position: absolute;
+  left: 22%;
+  top: 12%;
+  width: 32%;
+  height: 38%;
+  border-radius: 50%;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.32), transparent 72%);
+  transform: rotate(-16deg);
+}
+
+/* ---- silhouettes (bangs stay above brow line ~40px) ---- */
+.hair-soft { height: 42px; }
+.hair-soft .side { height: 34px; top: 12px; }
+
+.hair-wave { height: 44px; border-radius: 48% 54% 40% 36%; }
+.hair-wave .side.left { height: 38px; transform: rotate(8deg); }
+.hair-wave .side.right { height: 42px; transform: rotate(-5deg); }
+
+.hair-short { height: 36px; border-radius: 50% 50% 36% 36%; }
+.hair-short .side { height: 22px; top: 10px; width: 12px; }
+
+.hair-long { height: 42px; }
+.hair-long .side {
+  height: 68px;
+  top: 12px;
+  width: 13px;
+  border-radius: 10px 10px 14px 14px;
+}
+
+.hair-bob { height: 44px; }
+.hair-bob .side {
+  height: 50px;
+  top: 12px;
+  width: 14px;
+  background: linear-gradient(180deg, var(--hair) 70%, color-mix(in srgb, var(--hair-highlight) 45%, var(--hair)));
+}
+
+.hair-curl {
+  height: 44px;
+  box-shadow:
+    inset -6px -4px 10px rgba(0, 0, 0, 0.14),
+    -4px 3px 0 -1px var(--hair),
+    4px 3px 0 -1px var(--hair);
+}
+.hair-curl .side {
+  height: 32px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+.hair-undercut {
+  height: 34px;
+  border-radius: 58% 38% 32% 28%;
+}
+.hair-undercut .side.left { height: 18px; top: 8px; width: 10px; }
+.hair-undercut .side.right { display: none; }
+
+.hair-twin { height: 42px; }
+.hair-twin .side.left {
+  left: -10px;
+  height: 46px;
+  top: 14px;
+  width: 12px;
+  transform: rotate(16deg);
+  border-radius: 50% 50% 40% 40%;
+}
+.hair-twin .side.right {
+  right: -10px;
+  height: 46px;
+  top: 14px;
+  width: 12px;
+  transform: rotate(-16deg);
+  border-radius: 50% 50% 40% 40%;
+}
+
+.hair-ponytail { height: 42px; }
+.hair-ponytail .side.left { height: 24px; top: 10px; width: 11px; }
+.hair-ponytail .side.right {
+  right: -16px;
+  top: 22px;
+  width: 13px;
+  height: 52px;
+  border-radius: 12px;
+  transform: rotate(14deg);
+}
+
+.hair-braid { height: 42px; }
+.hair-braid .side {
+  width: 10px;
+  height: 50px;
+  top: 14px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--hair) 0 8px,
+    color-mix(in srgb, var(--hair) 82%, black) 8px 11px
+  );
+}
+
+.hair-leaf { height: 42px; }
+.hair-leaf .side { height: 32px; top: 12px; width: 12px; }
+/* tiny accent dot on top, not a blade */
+.hair-leaf .sheen {
+  left: auto;
+  right: 18px;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 70%, white);
+  transform: none;
+}
+
+.hair-neat { height: 38px; border-radius: 48% 48% 34% 34%; }
+.hair-neat .side { height: 24px; top: 10px; width: 11px; }
+
+.layered-avatar.compact .avatar-hair { height: 36px; }

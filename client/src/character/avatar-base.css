@@ -1,0 +1,154 @@
+/* avatar-base.css — cute human portrait, clean silhouette */
+.layered-avatar {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  isolation: isolate;
+  user-select: none;
+  /* leave headroom for accessory + prop label */
+  overflow: visible;
+  filter: drop-shadow(0 16px 22px rgba(20, 12, 30, 0.26));
+}
+
+/* ground shadow */
+.layered-avatar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 110px;
+  height: 14px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(20, 12, 30, 0.3), transparent 72%);
+  filter: blur(3px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.avatar-body {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 150px;
+  height: 210px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.avatar-neck {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  width: 22px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 6px 6px 8px 8px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--skin) 78%, var(--skin-shadow)), var(--skin));
+  z-index: 1;
+}
+
+.avatar-torso {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 132px;
+  height: 108px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* head — soft oval, slightly wider than tall */
+.avatar-head {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 112px;
+  height: 108px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 46% 46%;
+  background:
+    radial-gradient(115% 90% at 32% 24%, color-mix(in srgb, var(--skin) 90%, white), transparent 52%),
+    linear-gradient(155deg, color-mix(in srgb, var(--skin) 94%, white) 0%, var(--skin) 58%, color-mix(in srgb, var(--skin) 90%, var(--skin-shadow)) 100%);
+  box-shadow:
+    inset -8px -8px 14px color-mix(in srgb, var(--skin-shadow) 22%, transparent),
+    inset 5px 5px 10px rgba(255, 255, 255, 0.25),
+    0 8px 16px rgba(30, 18, 40, 0.1);
+  z-index: 3;
+}
+
+.face-oval .avatar-head { border-radius: 50% 50% 48% 48%; height: 112px; }
+.face-soft .avatar-head { border-radius: 52% 52% 48% 48%; }
+.face-round .avatar-head { width: 116px; height: 108px; border-radius: 50%; }
+.face-heart .avatar-head { width: 110px; border-radius: 54% 54% 40% 40%; }
+.face-bright .avatar-head {
+  border-radius: 50% 50% 48% 48%;
+  background:
+    radial-gradient(120% 95% at 36% 26%, color-mix(in srgb, var(--skin) 86%, white), transparent 56%),
+    linear-gradient(150deg, color-mix(in srgb, var(--skin) 96%, white), var(--skin));
+}
+
+/* ears — small nubs, skin-toned */
+.avatar-ear {
+  position: absolute;
+  top: 54px;
+  width: 10px;
+  height: 14px;
+  z-index: 2;
+}
+.avatar-ear.left {
+  left: -2px;
+  border-radius: 8px 5px 5px 8px;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--skin) 88%, white), var(--skin) 55%, var(--skin-shadow));
+}
+.avatar-ear.right {
+  right: -2px;
+  border-radius: 5px 8px 8px 5px;
+  background: linear-gradient(-120deg, color-mix(in srgb, var(--skin) 88%, white), var(--skin) 55%, var(--skin-shadow));
+}
+
+/* arms — at sides, hand at bottom */
+.avatar-arm {
+  position: absolute;
+  bottom: 18px;
+  width: 22px;
+  height: 58px;
+  border-radius: 11px 11px 9px 9px;
+  z-index: 1;
+}
+.avatar-arm.left {
+  left: 2px;
+  transform: rotate(8deg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--outfit) 86%, white), var(--outfit) 50%, var(--outfit-deep));
+}
+.avatar-arm.right {
+  right: 2px;
+  transform: rotate(-8deg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--outfit) 86%, white), var(--outfit) 50%, var(--outfit-deep));
+}
+.avatar-arm > i {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  bottom: -5px;
+  width: 13px;
+  height: 11px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--skin), color-mix(in srgb, var(--skin) 75%, var(--skin-shadow)));
+}
+
+/* build / pose */
+.build-slim .avatar-body { transform: translateX(-50%) scaleX(0.92); }
+.build-compact .avatar-body { transform: translateX(-50%) scale(0.95); }
+.pose-lean-left .avatar-body { transform: translateX(-50%) rotate(-2deg); }
+.pose-lean-right .avatar-body { transform: translateX(-50%) rotate(2deg); }
+.pose-open .avatar-body { transform: translateX(-50%) scaleX(1.03); }
+.silhouette-round .avatar-head { transform: translateX(-50%) scale(1.03, 0.98); }
+.silhouette-tiny .avatar-head { transform: translateX(-50%) scale(0.95); transform-origin: center bottom; }
+
+/* compact — keep readable */
+.layered-avatar.compact {
+  transform: scale(0.52);
+  transform-origin: center top;
+}

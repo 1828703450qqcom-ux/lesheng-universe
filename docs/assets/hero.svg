@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">乐生宇宙 · LESHENG UNIVERSE</title>
+  <desc id="desc">Turn your story into a music character. Meet through music. A midnight-blue constellation with a record-shaped planet and an original illustrated character.</desc>
+  <defs>
+    <radialGradient id="sky"><stop stop-color="#16394d"/><stop offset="1" stop-color="#070e21"/></radialGradient>
+    <linearGradient id="record"><stop stop-color="#132845"/><stop offset="1" stop-color="#263966"/></linearGradient>
+    <pattern id="stars" width="140" height="110" patternUnits="userSpaceOnUse"><circle cx="18" cy="22" r="1" fill="#8ca9c9"/><circle cx="100" cy="81" r="1.2" fill="#8ca9c9"/><circle cx="126" cy="31" r=".8" fill="#8ca9c9"/></pattern>
+  </defs>
+  <rect width="1280" height="640" rx="24" fill="url(#sky)"/>
+  <rect width="1280" height="640" rx="24" fill="url(#stars)" opacity=".48"/>
+  <g fill="none" stroke="#7597ba" stroke-opacity=".38"><path d="M755 89 845 54 928 115 1026 85 1100 178 1198 145"/><ellipse cx="976" cy="342" rx="218" ry="213"/><ellipse cx="976" cy="342" rx="244" ry="103" transform="rotate(-26 976 342)" stroke="#f2d092" stroke-opacity=".6"/><circle cx="976" cy="342" r="179" stroke-dasharray="3 9"/></g>
+  <g fill="#f5d690"><circle cx="755" cy="89" r="4"/><circle cx="845" cy="54" r="5"/><circle cx="928" cy="115" r="4"/><circle cx="1026" cy="85" r="5"/><circle cx="1100" cy="178" r="4"/><circle cx="1198" cy="145" r="4"/></g>
+  <g font-family="Georgia, 'Noto Serif SC', 'Microsoft YaHei', serif">
+    <text x="72" y="100" fill="#e8d199" font-size="14" letter-spacing="5">STORIES / MUSIC / CONNECTIONS</text>
+    <text x="68" y="218" fill="#fff4d9" font-size="70" letter-spacing="5">乐生宇宙</text>
+    <text x="72" y="267" fill="#8fa9be" font-size="21" letter-spacing="6">LESHENG UNIVERSE</text>
+    <text x="72" y="355" fill="#f5d690" font-size="30">让一首歌，成为认识一个人的开始。</text>
+    <text x="72" y="410" fill="#b8c9d8" font-size="19">你的故事 → 你的角色 → 你的音乐同路人</text>
+    <text x="72" y="501" fill="#8fa9be" font-size="15">React · Express · MediaPipe · Three.js</text>
+    <text x="72" y="560" fill="#7894ad" font-size="13" letter-spacing="2">LOCAL CHARACTER ENGINE / NO PAID AI API REQUIRED</text>
+  </g>
+  <circle cx="976" cy="342" r="141" fill="url(#record)" stroke="#a8c8d5" stroke-opacity=".3"/>
+  <g fill="none" stroke="#8aaac9" opacity=".16"><circle cx="976" cy="342" r="128"/><circle cx="976" cy="342" r="117"/><circle cx="976" cy="342" r="106"/><circle cx="976" cy="342" r="95"/></g>
+  <g transform="translate(976 333)">
+    <path d="M-71 116Q-75 42-39 30H39Q75 42 71 116Z" fill="#aba1d5" stroke="#d3c2df" stroke-width="3"/>
+    <path d="M-27 40 0 61 27 40" fill="#fff1d0"/>
+    <path d="M-59-9Q-76-86-3-91 73-94 61-7L49 35H-49Z" fill="#4b3c66"/>
+    <ellipse cy="-6" rx="53" ry="61" fill="#f6d6c4"/>
+    <path d="M-55-17Q-62-80-1-83 59-84 55-21 30-27 15-48-11-22-55-17Z" fill="#4b3c66"/>
+    <ellipse cx="-21" cy="2" rx="8" ry="12" fill="#403459"/><ellipse cx="21" cy="2" rx="8" ry="12" fill="#403459"/>
+    <circle cx="-23" cy="-2" r="3" fill="#fff"/><circle cx="19" cy="-2" r="3" fill="#fff"/>
+    <ellipse cx="-35" cy="24" rx="10" ry="5" fill="#df93a6" opacity=".5"/><ellipse cx="35" cy="24" rx="10" ry="5" fill="#df93a6" opacity=".5"/>
+    <path d="M-9 32Q0 43 9 32" fill="none" stroke="#bd737b" stroke-width="3" stroke-linecap="round"/>
+    <path d="M0 76 4 84 13 85 6 91 8 100 0 95-8 100-6 91-13 85-4 84Z" fill="#f5d690"/>
+    <circle cx="-60" cy="94" r="10" fill="#f6d6c4"/><circle cx="60" cy="94" r="10" fill="#f6d6c4"/>
+  </g>
+  <g fill="#f5d690" font-family="Georgia, serif"><text x="1161" y="296" font-size="42">♫</text><text x="772" y="410" font-size="30">✦</text></g>
+  <rect x="853" y="505" width="246" height="45" rx="22" fill="#0c192c" stroke="#8ba6c3" stroke-opacity=".35"/>
+  <text x="976" y="533" fill="#b9cdd9" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2">YOUR STORY. YOUR SOUL.</text>
+</svg>

@@ -1,0 +1,28 @@
+/* Single SVG silhouette: stable proportions at every existing avatar scale. */
+.layered-avatar.form-human .avatar-illustration {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 260px;
+  overflow: visible;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.layered-avatar.form-human .avatar-accessory {
+  top: 30px !important;
+  right: 2px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50%;
+  font-size: 15px;
+  background: rgba(11, 19, 39, .82);
+}
+
+.layered-avatar.form-human .avatar-prop-label {
+  bottom: 0 !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+  background: rgba(11, 19, 39, .88);
+}

@@ -1,0 +1,492 @@
+.home-programmatic-sky{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}.programmatic-dipper,.programmatic-constellation{fill:none;stroke:rgba(161,198,255,.75);stroke-width:1.2;stroke-dasharray:4 5}.programmatic-dipper circle,.programmatic-constellation circle{fill:#ffe18b;stroke:none;filter:drop-shadow(0 0 7px #ffe18b);animation:programStarBlink 2.4s ease-in-out infinite alternate}.programmatic-dipper circle:nth-of-type(2),.programmatic-constellation circle:nth-of-type(3){animation-delay:.7s}.programmatic-dipper circle:nth-of-type(4),.programmatic-constellation circle:nth-of-type(5){animation-delay:1.2s}.programmatic-stars{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}.programmatic-stars i{position:absolute;left:calc((var(--star-index) * 37 % 100) * 1%);top:calc((var(--star-index) * 67 % 94) * 1%);width:calc(1px + (var(--star-index) % 3) * 1px);height:calc(1px + (var(--star-index) % 3) * 1px);border-radius:50%;background:rgba(218,232,255,.9);box-shadow:0 0 8px rgba(144,190,255,.8);animation:programStarBlink calc(1.8s + (var(--star-index) % 5) * .35s) ease-in-out infinite alternate;animation-delay:calc((var(--star-index) % 7) * -.3s)}.home-cinematic{background:radial-gradient(ellipse at 82% 23%,rgba(82,118,225,.22),transparent 27%),radial-gradient(ellipse at 44% 75%,rgba(114,55,169,.18),transparent 30%),linear-gradient(145deg,#030916,#07162e 52%,#10173b)}.home-cinematic::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-27%;height:46%;z-index:-1;pointer-events:none;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at 50% 15%,rgba(160,198,255,.95),rgba(57,103,210,.62) 4%,rgba(16,33,76,.9) 21%,#050918 63%);box-shadow:0 -12px 35px rgba(143,188,255,.35);transform:rotate(-9deg);opacity:.9}.home-cinematic .hero-copy{z-index:5}.home-soul-scene{z-index:4}.home-soul-scene .hero-avatar{z-index:5}.home-soul-scene .hero-avatar .layered-avatar{transform:scale(1.5)}@keyframes programStarBlink{0%{opacity:.35;transform:scale(.75)}100%{opacity:1;transform:scale(1.3)}}
+@media(max-width:800px){.home-cinematic::after{bottom:-14%;height:29%;transform:rotate(-13deg)}.home-soul-scene .hero-avatar .layered-avatar{transform:scale(1.12)}.programmatic-stars i{opacity:.65}}
+
+/* Layout pass: lock the shared visual axis and keep the character card inside the viewport. */
+.topbar{position:relative}.desktop-nav{position:absolute;left:50%;transform:translateX(-50%);margin:0}.home-cinematic{padding-left:clamp(42px,7vw,118px);padding-right:clamp(42px,7vw,118px)}.home-cinematic .hero-copy{position:absolute;left:clamp(42px,7vw,118px);top:clamp(126px,17vh,168px);width:min(620px,42vw);max-width:none}.home-cinematic .hero-proof{align-items:flex-start}.home-cinematic .home-bottom{left:clamp(42px,7vw,118px)}.home-cinematic .home-soul-scene{position:absolute;top:50%;right:clamp(35px,5vw,90px);left:auto;width:min(54vw,760px);height:min(70vh,650px);transform:translateY(-47%)}.home-cinematic .home-soul-scene .hero-identity{bottom:4%;right:1%}.home-cinematic .home-soul-scene .hero-song{bottom:23%;left:16%}.home-cinematic .dipper-caption{bottom:17%}
+@media(max-width:1100px) and (min-width:801px){.home-cinematic .hero-copy{width:46vw}.home-cinematic .hero-copy h1{font-size:clamp(56px,6.3vw,82px)}.home-cinematic .home-soul-scene{right:1vw;width:53vw}.home-cinematic .home-soul-scene .hero-identity{transform:rotate(-4deg) scale(.86);transform-origin:right bottom}}
+@media(max-width:800px){.desktop-nav{position:static;transform:none}.home-cinematic{padding-left:22px;padding-right:22px}.home-cinematic .hero-copy{position:relative;left:auto;top:auto;width:auto;max-width:100%}.home-cinematic .home-soul-scene{top:auto;right:auto;transform:none}.home-cinematic .home-bottom{left:22px}}
+
+/* Final balance pass: use a centered 1520px composition instead of viewport-relative drift. */
+@media(min-width:801px){
+  .home-cinematic{padding-left:max(42px,calc((100vw - 1520px) / 2));padding-right:max(42px,calc((100vw - 1520px) / 2))}
+  .home-cinematic .hero-copy{left:max(42px,calc((100vw - 1520px) / 2));top:50%;transform:translateY(-48%)}
+  .home-cinematic .home-soul-scene{right:max(42px,calc((100vw - 1520px) / 2));top:50%;width:min(48vw,720px);transform:translateY(-50%)}
+  .home-cinematic .home-bottom{left:50%;bottom:24px;transform:translateX(-50%);white-space:nowrap;justify-content:center}
+}
+/* Ultra-wide: keep the 1520 frame so the character card never drifts off-stage */
+@media(min-width:1680px){
+  .home-cinematic .home-soul-scene{width:min(44vw,700px);height:min(68vh,620px)}
+  .home-cinematic .hero-copy h1{font-size:clamp(64px,5.4vw,92px)}
+}
+
+@media(min-width:801px) and (max-height:780px){
+  .home-cinematic .hero-copy{transform:translateY(-43%) scale(.92);transform-origin:left center}
+  .home-cinematic .home-soul-scene{transform:translateY(-50%) scale(.88);transform-origin:center}
+  .home-cinematic .home-bottom{bottom:16px}
+  .home-cinematic .home-soul-scene .hero-identity{bottom:2%;right:0}
+  .home-cinematic .home-soul-scene .hero-song{bottom:24%;left:12%}
+}
+
+/* =============================================================================
+   Home polish - Starry Night Voyage / Luxury Music Universe
+   Hierarchy, paper soul-card, stats/steps, depth, staggered reveal
+   ============================================================================= */
+
+/* --- Depth: pull decorations back, lift content forward --- */
+.home-cinematic .home-programmatic-sky{opacity:.72}
+.home-cinematic .programmatic-stars{opacity:.8}
+.home-cinematic .home-constellation{opacity:.32}
+.home-cinematic .home-nebula{opacity:.24}
+.home-cinematic .home-planet{opacity:.72}
+.home-cinematic::after{opacity:.74}
+
+/* Starfield depth: far dim / mid / near bright — softer blink so it never glares */
+@keyframes homeStarBlink{
+  0%{opacity:.16;transform:scale(.7)}
+  100%{opacity:.55;transform:scale(1.05)}
+}
+@keyframes homeStarBlinkNear{
+  0%{opacity:.38;transform:scale(.85)}
+  100%{opacity:.95;transform:scale(1.18)}
+}
+@keyframes homeStarBlinkFar{
+  0%{opacity:.06;transform:scale(.6)}
+  100%{opacity:.28;transform:scale(.9)}
+}
+.home-cinematic .programmatic-stars i{
+  animation-name:homeStarBlink;
+  animation-duration:calc(2.3s + (var(--star-index) % 5) * .42s);
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+  animation-delay:calc((var(--star-index) % 7) * -.38s);
+  background:rgba(210,228,255,.85);
+  box-shadow:0 0 5px rgba(144,190,255,.4);
+}
+.home-cinematic .programmatic-stars i:nth-child(3n){
+  animation-name:homeStarBlinkNear;
+  box-shadow:0 0 9px rgba(160,200,255,.7);
+}
+.home-cinematic .programmatic-stars i:nth-child(3n+1){
+  animation-name:homeStarBlinkFar;
+  box-shadow:0 0 2px rgba(144,190,255,.18);
+}
+.home-cinematic .programmatic-dipper circle,
+.home-cinematic .programmatic-constellation circle{
+  fill:#ffe18b;
+  filter:drop-shadow(0 0 3px rgba(255,225,139,.5));
+  animation-name:homeStarBlinkNear;
+  animation-duration:2.8s;
+}
+.home-cinematic .programmatic-dipper circle:nth-of-type(odd){
+  animation-duration:3.2s;
+  animation-delay:-.6s;
+}
+
+/* Soft scrim behind hero copy so serif type stays readable over the sky */
+.home-cinematic .hero-copy::before{
+  content:"";
+  position:absolute;
+  inset:-52px -80px -40px -60px;
+  z-index:-1;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 28% 42%,rgba(7,10,19,.68),rgba(7,10,19,.3) 48%,transparent 74%);
+}
+
+/* --- Hero title: serif weight, CJK-friendly leading, gold rhythm --- */
+.home-cinematic .hero-copy h1{
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-weight:400;
+  font-size:clamp(52px,6.4vw,96px);
+  line-height:1.14;
+  letter-spacing:.025em;
+  color:#f6eedc;
+  text-shadow:0 2px 22px rgba(7,10,19,.55),0 14px 42px rgba(7,10,19,.32);
+}
+.home-cinematic .hero-copy h1 em{
+  color:#ffd166;
+  font-weight:400;
+  letter-spacing:.03em;
+  text-shadow:0 0 32px rgba(255,209,102,.22),0 2px 18px rgba(7,10,19,.4);
+}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .home-cinematic .hero-copy h1 em{
+    background:linear-gradient(180deg,#ffe6a0 0%,#ffd166 48%,#dca841 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:none;
+    filter:drop-shadow(0 0 18px rgba(255,209,102,.28)) drop-shadow(0 2px 10px rgba(7,10,19,.35));
+  }
+}
+
+.home-cinematic .hero-copy .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+  color:rgba(255,209,102,.82);
+  letter-spacing:.2em;
+}
+.home-cinematic .hero-copy .eyebrow::before{
+  content:"";
+  width:18px;
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,209,102,.7),rgba(255,209,102,.15));
+}
+.home-cinematic .hero-coordinate{
+  margin-bottom:12px;
+  color:rgba(123,167,232,.72);
+}
+.home-cinematic .hero-sub{
+  max-width:34em;
+  color:rgba(246,238,220,.78);
+  line-height:1.85;
+  letter-spacing:.02em;
+}
+
+/* --- CTA hierarchy: primary glow vs quiet secondary vs tertiary text --- */
+.home-cinematic .hero-actions{gap:14px;align-items:center}
+
+.home-cinematic .hero-actions .primary-button{
+  position:relative;
+  min-height:50px;
+  min-width:206px;
+  padding:14px 28px;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.06em;
+  color:#1a1408;
+  background:linear-gradient(135deg,#ffe8a6 0%,#ffd166 42%,#e0af4a 100%);
+  border:1px solid rgba(255,236,180,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(220,168,65,.35),0 0 0 1px rgba(255,209,102,.18),0 12px 32px rgba(255,209,102,.24),0 22px 48px rgba(7,10,19,.35);
+}
+.home-cinematic .hero-actions .primary-button:hover{
+  transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(220,168,65,.4),0 0 0 1px rgba(255,209,102,.32),0 16px 40px rgba(255,209,102,.34),0 28px 56px rgba(7,10,19,.4);
+}
+.home-cinematic .hero-actions .primary-button:active{transform:translateY(0) scale(.98)}
+
+.home-cinematic .hero-actions .ghost-button{
+  min-height:50px;
+  padding:13px 24px;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.05em;
+  color:rgba(246,238,220,.88);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(246,238,220,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.home-cinematic .hero-actions .ghost-button:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,209,102,.45);
+  color:#ffd166;
+  background:rgba(255,209,102,.07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 28px rgba(7,10,19,.28);
+}
+
+.home-cinematic .hero-actions .hero-guide-button{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-left:4px;
+  padding:10px 2px;
+  background:transparent;
+  color:rgba(246,238,220,.5);
+  font-size:12px;
+  letter-spacing:.04em;
+  border-bottom:1px solid transparent;
+}
+.home-cinematic .hero-actions .hero-guide-button:hover{
+  color:#ffd166;
+  border-bottom-color:rgba(255,209,102,.35);
+}
+
+/* --- Stats bar (12.8K music souls) --- */
+.home-cinematic .hero-proof{
+  margin-top:48px;
+  padding-top:22px;
+  border-top:1px solid rgba(246,238,220,.1);
+  align-items:flex-start;
+}
+.home-cinematic .hero-proof>div{
+  min-width:112px;
+  padding-right:26px;
+  margin-right:26px;
+  border-right:1px solid rgba(246,238,220,.08);
+}
+.home-cinematic .hero-proof>div:last-child{border-right:0;margin-right:0;padding-right:0}
+.home-cinematic .hero-proof strong{
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-size:26px;
+  font-weight:400;
+  letter-spacing:.04em;
+  color:#f6eedc;
+}
+.home-cinematic .hero-proof>div:first-child strong{color:#ffd166}
+.home-cinematic .hero-proof span{
+  margin-top:7px;
+  color:rgba(165,168,183,.85);
+  font-size:11px;
+  letter-spacing:.08em;
+}
+
+/* --- Character soul-scene: glass song bar + paper soul-card --- */
+.home-soul-scene{pointer-events:none}
+.home-soul-scene .hero-song,
+.home-soul-scene .hero-identity,
+.home-soul-scene .hero-identity button{pointer-events:auto}
+
+.home-soul-scene .hero-song{
+  gap:8px;
+  padding:9px 14px 9px 11px;
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(13,18,32,.84),rgba(22,30,52,.74));
+  border:1px solid rgba(255,209,102,.22);
+  color:rgba(246,238,220,.82);
+  font-size:12px;
+  letter-spacing:.04em;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 0 1px rgba(255,209,102,.04),0 12px 30px rgba(0,0,0,.32);
+}
+.home-soul-scene .hero-song svg{color:#ffd166;filter:drop-shadow(0 0 6px rgba(255,209,102,.45))}
+
+/* paper soul-card — 信物 / 唱片封套质感 */
+.home-soul-scene .hero-identity{
+  width:252px;
+  padding:18px 16px 14px;
+  border-radius:6px;
+  border:1px solid rgba(220,168,65,.38);
+  background:linear-gradient(165deg,#faf6ea 0%,#f4ebd8 52%,#ebe0c6 100%);
+  color:#21233c;
+  box-shadow:14px 12px 0 rgba(255,209,102,.1),0 24px 48px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.65),inset 0 0 0 1px rgba(255,255,255,.18);
+  transform:rotate(-4deg);
+  transition:box-shadow .35s ease,filter .35s ease;
+}
+/* gold foil inner frame */
+.home-soul-scene .hero-identity::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  pointer-events:none;
+  border:1px solid rgba(220,168,65,.22);
+  border-radius:2px;
+}
+@media (hover:hover) and (pointer:fine){
+  .home-soul-scene .hero-identity:hover{
+    box-shadow:16px 14px 0 rgba(255,209,102,.14),0 28px 56px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.7),inset 0 0 0 1px rgba(255,255,255,.2);
+    filter:brightness(1.02);
+  }
+}
+/* paper grain */
+.home-soul-scene .hero-identity::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  border-radius:inherit;
+  background-image:linear-gradient(rgba(33,35,60,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(33,35,60,.03) 1px,transparent 1px);
+  background-size:22px 22px;
+  mask-image:radial-gradient(circle at 30% 20%,#000,transparent 85%);
+}
+.home-soul-scene .hero-identity small{
+  color:#b78f4c;
+  font:10px/1 monospace;
+  letter-spacing:.22em;
+}
+.home-soul-scene .hero-identity strong{
+  margin-top:8px;
+  font-family:'Songti SC','STSong','Noto Serif SC','Source Han Serif SC','SimSun','ZCOOL XiaoWei',serif;
+  font-size:24px;
+  font-weight:400;
+  letter-spacing:.06em;
+  color:#1c1f35;
+}
+.home-soul-scene .hero-identity span{
+  margin-top:4px;
+  color:#747180;
+  font-size:11px;
+  letter-spacing:.06em;
+  line-height:1.5;
+}
+.home-soul-scene .hero-identity i{
+  margin-top:10px;
+  color:#dca841;
+  font-size:8px;
+  letter-spacing:3px;
+  font-style:normal;
+}
+.home-soul-scene .hero-identity button{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#ffe8a6,#ffd166 50%,#e0af4a);
+  color:#273052;
+  font-size:11px;
+  box-shadow:0 0 0 3px rgba(255,209,102,.18),0 6px 14px rgba(181,143,68,.28);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.home-soul-scene .hero-identity button:hover{
+  transform:scale(1.06);
+  box-shadow:0 0 0 5px rgba(255,209,102,.22),0 8px 20px rgba(255,209,102,.35);
+}
+
+/* halo + orbit softness so the soul-card stays the focus */
+.home-character-halo{opacity:.82;filter:blur(14px)}
+.solar-orbit{opacity:.62}
+.solar-orbit-a{box-shadow:0 0 16px rgba(255,221,147,.12)}
+.home-soul-scene .floating-note{opacity:.8}
+
+/* --- Steps bar 01 -> 02 -> 03 --- */
+/* visual-refresh paints ::before "01/02/03"; markup already has <b>0n</b> - suppress the duplicate */
+.home-cinematic .home-bottom span::before{content:none;display:none}
+
+.home-cinematic .home-bottom{
+  gap:0;
+  z-index:4;
+  padding:10px 8px;
+  border-radius:999px;
+  color:rgba(226,227,234,.72);
+  background:rgba(7,10,19,.4);
+  border:1px solid rgba(246,238,220,.08);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 30px rgba(0,0,0,.18);
+}
+.home-cinematic .home-bottom span{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:4px 12px;
+  font-size:12px;
+  letter-spacing:.06em;
+  transition:color .25s ease;
+}
+.home-cinematic .home-bottom span:hover{color:#f6eedc}
+.home-cinematic .home-bottom b{
+  color:#ffd166;
+  font:700 11px/1 monospace;
+  letter-spacing:.08em;
+  padding:3px 6px;
+  border-radius:4px;
+  background:rgba(255,209,102,.1);
+  border:1px solid rgba(255,209,102,.22);
+}
+.home-cinematic .home-bottom span:hover b{
+  background:rgba(255,209,102,.16);
+  border-color:rgba(255,209,102,.38);
+}
+.home-cinematic .home-bottom svg{
+  color:rgba(255,209,102,.4);
+  margin:0 2px;
+  opacity:.7;
+}
+
+/* --- Staggered reveal (CSS animation-delay only) --- */
+/* 40–80ms staircase: copy left→right depth, scene halo→card, then proof bar */
+@keyframes homeFadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes homeFadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes homeCardIn{
+  from{opacity:0;filter:blur(8px) saturate(.85)}
+  to{opacity:1;filter:blur(0) saturate(1)}
+}
+
+.home-cinematic .hero-coordinate{animation:homeFadeUp .7s cubic-bezier(.2,.7,.2,1) .04s both}
+.home-cinematic .hero-copy .eyebrow{animation:homeFadeUp .7s cubic-bezier(.2,.7,.2,1) .1s both}
+.home-cinematic .hero-copy h1{animation:homeFadeUp .85s cubic-bezier(.2,.7,.2,1) .16s both}
+.home-cinematic .hero-sub{animation:homeFadeUp .75s cubic-bezier(.2,.7,.2,1) .24s both}
+.home-cinematic .hero-actions{animation:homeFadeUp .75s cubic-bezier(.2,.7,.2,1) .3s both}
+.home-cinematic .hero-proof{animation:homeFadeUp .75s cubic-bezier(.2,.7,.2,1) .38s both}
+.home-cinematic .home-bottom{animation:homeFadeIn .85s ease .48s both}
+
+.home-cinematic .solar-orbit,
+.home-cinematic .home-character-halo,
+.home-cinematic .scene-star,
+.home-cinematic .scene-coordinate,
+.home-cinematic .dipper-caption{animation:homeFadeIn .95s ease .18s both}
+.home-cinematic .hero-avatar{animation:homeFadeIn 1s ease .28s both,float 4s ease-in-out 1.1s infinite}
+/* backwards fill so entrance end-state doesn't lock out hover scale / mobile transform */
+.home-soul-scene .hero-song{animation:homeFadeIn .75s ease .36s backwards}
+.home-soul-scene .hero-identity{animation:homeCardIn .9s cubic-bezier(.2,.7,.2,1) .44s backwards}
+.home-soul-scene .floating-note{animation:homeFadeIn .85s ease .52s both}
+
+/* Preserve ambient float/pulse where they don't fight the reveal end-state */
+.home-cinematic .scene-star{animation:homeFadeIn .95s ease .18s both,starPulse 2.6s ease-in-out 1.1s infinite}
+.home-character-halo{animation:homeFadeIn .95s ease .18s both,heroHalo 4s ease-in-out 1.1s infinite}
+.home-soul-scene .floating-note.note-a{animation:homeFadeIn .85s ease .52s both,float 3s ease-in-out 1.4s infinite}
+.home-soul-scene .floating-note.note-b{animation:homeFadeIn .85s ease .58s both,float 3s ease-in-out 1.6s infinite}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion:reduce){
+  .home-cinematic .hero-coordinate,
+  .home-cinematic .hero-copy .eyebrow,
+  .home-cinematic .hero-copy h1,
+  .home-cinematic .hero-sub,
+  .home-cinematic .hero-actions,
+  .home-cinematic .hero-proof,
+  .home-cinematic .home-bottom,
+  .home-cinematic .solar-orbit,
+  .home-cinematic .home-character-halo,
+  .home-cinematic .scene-star,
+  .home-cinematic .scene-coordinate,
+  .home-cinematic .dipper-caption,
+  .home-cinematic .hero-avatar,
+  .home-soul-scene .hero-song,
+  .home-soul-scene .hero-identity,
+  .home-soul-scene .floating-note,
+  .home-cinematic .programmatic-stars i,
+  .home-cinematic .programmatic-dipper circle,
+  .home-cinematic .programmatic-constellation circle{
+    animation:none!important;
+  }
+  .home-soul-scene .hero-identity{transform:rotate(-4deg);filter:none}
+  .home-soul-scene .hero-identity button,
+  .home-cinematic .hero-actions .primary-button,
+  .home-cinematic .hero-actions .ghost-button{transition:none}
+}
+
+/* --- Small-height / tablet polish for the new hierarchy --- */
+@media(min-width:801px) and (max-height:780px){
+  .home-cinematic .hero-proof{margin-top:34px;padding-top:16px}
+  .home-cinematic .hero-actions .primary-button,
+  .home-cinematic .hero-actions .ghost-button{min-height:46px}
+  .home-cinematic .hero-copy h1{font-size:clamp(46px,5.6vw,78px)}
+  .home-cinematic .hero-sub{line-height:1.7}
+  .home-soul-scene .hero-identity{width:230px;padding:14px 14px 12px}
+  .home-soul-scene .hero-identity strong{font-size:21px}
+}
+
+/* --- Mobile hierarchy: keep copy readable, card on-canvas --- */
+@media(max-width:800px){
+  .home-cinematic .hero-copy h1{font-size:clamp(38px,11vw,52px);line-height:1.16}
+  .home-cinematic .hero-copy .eyebrow{margin-bottom:12px;letter-spacing:.14em}
+  .home-cinematic .hero-sub{margin:16px 0 22px;font-size:13px;line-height:1.75}
+  .home-cinematic .hero-actions{gap:10px}
+  .home-cinematic .hero-actions .primary-button,
+  .home-cinematic .hero-actions .ghost-button{min-height:46px;min-width:0;padding:12px 18px}
+  .home-cinematic .hero-proof{margin-top:24px;padding-top:16px}
+  .home-cinematic .hero-proof>div{min-width:0;padding-right:14px;margin-right:14px}
+  .home-cinematic .hero-proof strong{font-size:20px}
+  .home-cinematic .home-soul-scene .hero-identity{
+    width:min(220px,58vw);
+    transform:rotate(-3deg) scale(.86);
+    transform-origin:right bottom;
+  }
+  .home-cinematic .home-soul-scene .hero-song{
+    left:6%;
+    bottom:18%;
+    transform:scale(.94);
+    transform-origin:left bottom;
+  }
+  .home-cinematic .dipper-caption{bottom:12%;transform:scale(.85)}
+  .home-cinematic .programmatic-stars i{opacity:.55}
+}

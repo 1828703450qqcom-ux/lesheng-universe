@@ -1,0 +1,29 @@
+name: Bug report / 问题反馈
+description: Help reproduce a real problem without sharing private data.
+body:
+  - type: markdown
+    attributes:
+      value: "请勿填写真实密码、令牌、私人日记或照片。安全问题请参考 SECURITY.md。"
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你希望完成什么？
+      description: 描述预期行为与实际结果。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 最小复现步骤
+      placeholder: "1. 打开页面…\n2. 点击…\n3. 观察到…"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 设备、浏览器与屏幕尺寸
+      placeholder: "例如：Android / Chrome / 390×844"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 截图或日志（请先脱敏）

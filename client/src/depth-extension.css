@@ -1,0 +1,157 @@
+/* Observatory depth: independent layers keep the interactive map flat and clickable. */
+.plaza-map {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 51%, rgba(65, 129, 179, .25), transparent 44%),
+    radial-gradient(ellipse at 80% 15%, rgba(96, 112, 195, .14), transparent 38%),
+    linear-gradient(160deg, #101f3a 0%, #122944 52%, #12323b 100%);
+  box-shadow: inset 0 1px 0 rgba(190, 222, 255, .18), inset 0 -70px 115px rgba(2, 11, 25, .5), 0 32px 75px rgba(0, 5, 22, .3);
+}
+.plaza-map::before,
+.plaza-map::after {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 51%;
+  border-radius: 50%;
+}
+.plaza-map::before {
+  z-index: 0;
+  width: min(710px, 72%);
+  height: 360px;
+  transform: translate(-50%, -50%) perspective(900px) rotateX(64deg);
+  border: 2px solid rgba(140, 219, 219, .45);
+  background: radial-gradient(ellipse, rgba(50, 117, 149, .14) 0 42%, rgba(100, 189, 203, .17) 50%, rgba(8, 28, 50, .45) 72%);
+  box-shadow: 0 26px 0 rgba(3, 19, 36, .55), 0 43px 42px rgba(0, 5, 16, .36), inset 0 0 40px rgba(116, 219, 207, .18), 0 0 30px rgba(91, 185, 198, .2);
+}
+.plaza-map::after {
+  z-index: 0;
+  width: min(550px, 58%);
+  height: 250px;
+  transform: translate(-50%, -50%) perspective(900px) rotateX(64deg);
+  border: 1px dashed rgba(255, 221, 157, .35);
+  background: radial-gradient(ellipse, transparent 45%, rgba(255, 211, 125, .07) 63%, transparent 76%);
+  box-shadow: 0 10px 35px rgba(255, 202, 106, .07);
+}
+.plaza-stage-ring {
+  border-color: rgba(255, 220, 150, .48);
+  transform: translate(-50%, -50%) perspective(900px) rotateX(57deg) rotateZ(-8deg);
+  box-shadow: 0 19px 0 rgba(3, 17, 33, .36), 0 35px 40px rgba(0, 7, 21, .25), inset 0 0 38px rgba(255, 210, 125, .13);
+}
+.plaza-stage .stage-screen {
+  transform: perspective(900px) rotateX(-3deg);
+  transform-origin: center bottom;
+  border-color: rgba(255, 221, 154, .6);
+  box-shadow: 0 7px 0 #0b1526, 0 10px 0 rgba(206, 161, 88, .26), 0 28px 48px rgba(1, 7, 21, .6), inset 0 1px rgba(255, 255, 255, .11);
+}
+.plaza-map .plaza-spot {
+  background: linear-gradient(150deg, rgba(26, 42, 64, .96), rgba(7, 16, 30, .96));
+  border: 1px solid rgba(154, 189, 222, .25);
+  box-shadow: 0 5px 0 rgba(4, 13, 26, .94), 0 13px 23px rgba(0, 7, 20, .36), inset 0 1px rgba(237, 243, 255, .08);
+  transform: translate(-50%, -50%) perspective(700px) rotateX(5deg);
+}
+.plaza-map .plaza-spot:hover,
+.plaza-map .plaza-spot:focus-visible {
+  transform: translate(-50%, calc(-50% - 5px)) perspective(700px) rotateX(0deg);
+  border-color: rgba(255, 218, 132, .55);
+  box-shadow: 0 8px 0 rgba(4, 13, 26, .94), 0 20px 30px rgba(0, 7, 20, .43), 0 0 22px rgba(255, 210, 117, .12);
+}
+.plaza-map .plaza-person { filter: drop-shadow(0 8px 5px rgba(0, 5, 15, .46)); }
+
+/* The character's stage reads as a small illuminated planet, not a flat frame. */
+.character-stage { position: relative; isolation: isolate; overflow: hidden; }
+.character-stage::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 9%;
+  width: min(340px, 62%);
+  height: 80px;
+  border-radius: 50%;
+  transform: translateX(-50%) perspective(600px) rotateX(62deg);
+  background: radial-gradient(ellipse, rgba(145, 211, 230, .25), rgba(63, 113, 173, .12) 52%, transparent 74%);
+  border: 1px solid rgba(153, 216, 231, .3);
+  box-shadow: 0 13px 25px rgba(0, 6, 18, .35), 0 0 26px rgba(101, 182, 216, .13);
+  pointer-events: none;
+}
+.character-stage .stage-avatar { z-index: 1; }
+.creation-preview {
+  border-color: rgba(158, 202, 227, .26);
+  box-shadow: 0 8px 0 rgba(2, 12, 28, .42), 0 27px 50px rgba(0, 6, 19, .26), inset 0 1px rgba(224, 244, 255, .08);
+}
+.creation-preview .preview-orbit {
+  isolation: isolate;
+  border: 1px solid rgba(154, 203, 221, .13);
+  box-shadow: inset 0 -16px 30px rgba(6, 21, 41, .35);
+}
+.creation-preview .preview-orbit::before {
+  width: 172px;
+  height: 125px;
+  transform: perspective(550px) rotateX(63deg) rotateZ(-18deg);
+  border-color: rgba(255, 219, 146, .48);
+  box-shadow: 0 10px 15px rgba(255, 210, 112, .09);
+}
+.creation-preview .preview-orbit::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 124px;
+  height: 28px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: rgba(3, 10, 24, .4);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (min-width: 801px) {
+  .discover-card, .event-card, .shop-card, .profile-card, .plaza-live-grid button {
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .discover-card:hover, .event-card:hover, .shop-card:hover, .profile-card:hover, .plaza-live-grid button:hover {
+    transform: perspective(950px) rotateX(2deg) translateY(-5px);
+    box-shadow: 0 20px 48px rgba(0, 7, 22, .35), inset 0 1px rgba(255, 255, 255, .1);
+  }
+}
+@media (max-width: 800px) {
+  .home-soul-scene { height: 420px !important; --soul-core-y: 36%; }
+  .home-soul-scene .hero-identity { right: 0; bottom: 6px; max-width: 195px; }
+  .home-soul-scene .dipper-caption { display: none; }
+  .plaza-map::before { top: 53%; width: 90%; height: 225px; opacity: .72; }
+  .plaza-map::after { top: 53%; width: 72%; height: 160px; opacity: .55; }
+  .plaza-stage-ring { transform: translate(-50%, -50%) perspective(700px) rotateX(59deg) rotateZ(-8deg); }
+  .plaza-stage .stage-screen { transform: none; box-shadow: 0 5px 0 #0b1526, 0 16px 26px rgba(1, 7, 21, .48); }
+  .plaza-map .plaza-spot { transform: translate(-50%, -50%); }
+  .creation-body { display: flex; flex-direction: column; }
+  .creation-preview {
+    display: grid;
+    order: -1;
+    grid-template-columns: 84px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
+    min-height: 112px;
+    margin-bottom: 14px;
+    padding: 10px 13px;
+  }
+  .creation-preview > .eyebrow { grid-column: 1 / -1; margin: 0 0 5px; font-size: 8px; }
+  .creation-preview .preview-orbit { grid-column: 1; grid-row: 2; width: 84px; height: 82px; margin: 0; overflow: hidden; }
+  .creation-preview .preview-orbit .layered-avatar.form-human { min-width: 200px; transform: none !important; zoom: .3 !important; }
+  .creation-preview .preview-orbit::before { width: 76px; height: 68px; }
+  .creation-preview .preview-orbit::after, .creation-preview .preview-stars, .creation-preview .preview-signals { display: none; }
+  .creation-preview .preview-name { grid-column: 2; grid-row: 2; border: 0; padding: 0; }
+  .creation-preview .preview-name h2 { font-size: 18px; margin: 4px 0; }
+  .creation-preview .preview-name p { font-size: 10px; line-height: 1.5; }
+  .character-stage::after { bottom: 7%; width: 60%; }
+}
+@media (max-width: 360px) {
+  .creation-preview { grid-template-columns: 72px minmax(0, 1fr); min-height: 100px; }
+  .creation-preview .preview-orbit { width: 72px; height: 76px; }
+  .creation-preview .preview-name h2 { font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .creation-preview .preview-name p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .creation-preview .preview-orbit::before { animation: none; }
+  .discover-card, .event-card, .shop-card, .profile-card, .plaza-live-grid button { transition: none; }
+}

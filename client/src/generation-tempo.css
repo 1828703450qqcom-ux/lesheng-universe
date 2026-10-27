@@ -1,0 +1,81 @@
+/* generation-tempo.css — 3s generation rhythm for /create/generate */
+
+/* scan line travels in a 3s beat */
+.generate-page .scan-line {
+  animation: tempoScan 3s ease-in-out infinite;
+}
+
+@keyframes tempoScan {
+  0% { transform: translateY(-110px); opacity: 0; }
+  12% { opacity: 0.85; }
+  50% { transform: translateY(110px); opacity: 0.85; }
+  62% { opacity: 0; }
+  100% { transform: translateY(-110px); opacity: 0; }
+}
+
+/* orbit rings pulse on the same bar */
+.generate-page .orbit-a {
+  animation: tempoOrbitA 3s ease-in-out infinite;
+}
+.generate-page .orbit-b {
+  animation: tempoOrbitB 3s ease-in-out infinite;
+}
+.generate-page .generation-vinyl {
+  animation: tempoVinyl 3s ease-in-out infinite;
+}
+
+@keyframes tempoOrbitA {
+  0%, 100% { opacity: 0.35; transform: rotate(0deg) scaleX(1); }
+  50% { opacity: 0.7; transform: rotate(18deg) scaleX(1.05); }
+}
+@keyframes tempoOrbitB {
+  0%, 100% { opacity: 0.25; transform: rotate(0deg) scaleY(1); }
+  50% { opacity: 0.55; transform: rotate(-18deg) scaleY(1.05); }
+}
+@keyframes tempoVinyl {
+  0%, 100% { transform: rotate(0deg) scale(1); filter: brightness(1); }
+  50% { transform: rotate(8deg) scale(1.03); filter: brightness(1.08); }
+}
+
+/* phase progress bar fills across the 3s window */
+.generate-page .generation-progress > i > b,
+.generate-page .generation-progress i > b {
+  transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* reveal pops after the 3s sequence */
+.reveal-complete .generation-avatar {
+  animation: tempoReveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both, tempoFloat 3s 0.7s ease-in-out infinite;
+}
+.reveal-complete .reveal-title {
+  animation: tempoRise 0.55s 0.12s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.reveal-complete .generated-reason {
+  animation: tempoRise 0.55s 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes tempoReveal {
+  from { transform: scale(0.82); opacity: 0.25; filter: blur(10px); }
+  to { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+@keyframes tempoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes tempoRise {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* keep compact-safe */
+@media (prefers-reduced-motion: reduce) {
+  .generate-page .scan-line,
+  .generate-page .orbit-a,
+  .generate-page .orbit-b,
+  .generate-page .generation-vinyl,
+  .reveal-complete .generation-avatar,
+  .reveal-complete .reveal-title,
+  .reveal-complete .generated-reason {
+    animation: none;
+  }
+}

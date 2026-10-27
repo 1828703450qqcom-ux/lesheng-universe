@@ -1,0 +1,88 @@
+/* avatar-outfit.css — clean rounded top */
+.avatar-clothes {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 128px;
+  height: 96px;
+  transform: translateX(-50%);
+  border-radius: 32px 32px 16px 16px;
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--outfit) 80%, white) 0%, var(--outfit) 44%, var(--outfit-deep) 100%);
+  box-shadow:
+    inset -10px -8px 16px rgba(0, 0, 0, 0.12),
+    inset 0 8px 12px rgba(255, 255, 255, 0.12),
+    0 6px 12px rgba(20, 12, 30, 0.1);
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* collar */
+.avatar-clothes::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 46px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--outfit) 60%, white), color-mix(in srgb, var(--outfit-deep) 65%, transparent));
+  z-index: 2;
+}
+
+.avatar-clothes > span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 40%);
+  z-index: 1;
+}
+
+.avatar-clothes > b {
+  position: absolute;
+  left: 50%;
+  top: 32px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.outfit-structured .avatar-clothes { border-radius: 22px 22px 10px 10px; }
+.outfit-structured .avatar-clothes::before { width: 36px; height: 14px; border-radius: 0 0 6px 6px; }
+.outfit-layered .avatar-clothes {
+  box-shadow:
+    inset -10px -8px 16px rgba(0, 0, 0, 0.12),
+    0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent),
+    0 6px 12px rgba(20, 12, 30, 0.1);
+}
+.outfit-sport .avatar-clothes { border-radius: 36px 36px 12px 12px; }
+.outfit-sport .avatar-clothes > b { border-radius: 3px; width: 10px; height: 10px; }
+.outfit-cape .avatar-clothes::before {
+  width: 100%;
+  height: 30px;
+  left: 0;
+  transform: none;
+  border-radius: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--outfit-deep) 80%, transparent), transparent);
+}
+
+.pattern-constellation .avatar-clothes > b {
+  opacity: 0.4;
+  box-shadow: 22px 12px 0 -3px var(--accent), -24px 16px 0 -4px var(--accent);
+}
+.pattern-wave .avatar-clothes > b {
+  width: 8px;
+  height: 8px;
+  top: 36px;
+  box-shadow:
+    18px 6px 0 -1px color-mix(in srgb, var(--accent) 65%, transparent),
+    -18px 6px 0 -1px color-mix(in srgb, var(--accent) 65%, transparent);
+}
+.pattern-split .avatar-clothes {
+  background: linear-gradient(90deg, var(--outfit) 50%, var(--outfit-deep) 50%);
+}
+.pattern-badge .avatar-clothes > b { width: 12px; height: 12px; }

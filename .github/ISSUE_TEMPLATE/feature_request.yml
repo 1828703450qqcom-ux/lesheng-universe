@@ -1,0 +1,16 @@
+name: Feature idea / 一起做点新东西
+description: Start with a user moment, then propose an improvement.
+body:
+  - type: textarea
+    id: moment
+    attributes:
+      label: 哪个用户时刻值得变得更好？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你的方案与验证方式
+      description: "可以附布局草图、角色样式想法或技术实现。涉及音乐请说明合法音源来源。"
+    validations:
+      required: true
